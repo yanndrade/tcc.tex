@@ -94,7 +94,7 @@ Considera-se que o escopo está ``fechado'' quando o modelo do imóvel contém i
 A partir desse ponto, o fluxo avança para as etapas de cálculo e validação normativa, mantendo a possibilidade de retorno à etapa de aquisição caso sejam identificadas inconsistências durante as verificações posteriores.
 
 \section{Modelo normativo e estratégia de aplicação}
-Com o escopo consolidado e o modelo do imóvel estruturado, o método avança para a etapa em que as informações coletadas são transformadas em decisões e cálculos do projeto elétrico residencial. Nesta fase, a metodologia adota como referência as normas técnicas aplicáveis a instalações elétricas de baixa tensão e as diretrizes locais de fornecimento, estabelecendo um conjunto de regras e critérios que guiam o dimensionamento.
+Com o escopo consolidado e o modelo do imóvel estruturado, o método avança para a etapa em que as informações coletadas são transformadas em decisões e cálculos do projeto elétrico residencial. Nesta fase, a metodologia adota como referência as normas técnicas aplicáveis a instalações elétricas de baixa tensão e as diretrizes locais de fornecimento, estabelecendo um conjunto de regras e critérios que guiam o dimensionamento, com base na ABNT NBR 5410 \cite{NBR5410:2004}.
 
 A estratégia adotada combina dois elementos complementares:
 (i) rotinas determinísticas de dimensionamento, que formalizam regras normativas em procedimentos reprodutíveis; e
@@ -129,10 +129,11 @@ Para tornar o método objetivo e reprodutível, foram adotadas premissas compat�
 Critérios adicionais, como verificação de queda de tensão, curto-circuito e aterramento, não são contemplados no escopo atual e são indicados como extensões futuras, sem prejuízo ao objetivo principal do trabalho.
 
 \section{Pipeline de dimensionamento do projeto elétrico}
-O dimensionamento do projeto elétrico residencial proposto neste trabalho é conduzido por um pipeline sequencial, fundamentado na previsão de cargas mínimas e na organização em circuitos terminais, conforme critérios normativos e boas práticas usuais. O levantamento das potências é realizado por meio de uma previsão das cargas mínimas de iluminação e tomadas, permitindo determinar a potência total prevista da instalação. Essa previsão segue o que estabelece o item 9.5.2 da ABNT NBR 5410:2008, que orienta o procedimento de estimativa das cargas a serem instaladas.
+\label{sec:pipeline}
+O dimensionamento do projeto elétrico residencial proposto neste trabalho é conduzido por um pipeline sequencial, fundamentado na previsão de cargas mínimas e na organização em circuitos terminais, conforme critérios normativos e boas práticas usuais. O levantamento das potências é realizado por meio de uma previsão das cargas mínimas de iluminação e tomadas, permitindo determinar a potência total prevista da instalação. Essa previsão segue o que estabelece o item 9.5.2 da ABNT NBR 5410 \cite{NBR5410:2004}, que orienta o procedimento de estimativa das cargas a serem instaladas.
 
 \subsection{Previsão de carga de iluminação}
-A carga mínima de iluminação por cômodo/dependência é estimada em função da área do ambiente, conforme o \textbf{item 9.5.2} da ABNT NBR 5410:2008. Para fins de aplicação metodológica, adota-se:
+A carga mínima de iluminação por cômodo/dependência é estimada em função da área do ambiente, conforme o \textbf{item 9.5.2} da ABNT NBR 5410 \cite{NBR5410:2004}. Para fins de aplicação metodológica, adota-se:
 
 \begin{itemize}
     \item Para ambientes com \textbf{área $\le$ 6 m$^2$}: prever 100 VA de carga mínima de iluminação.
@@ -141,10 +142,10 @@ A carga mínima de iluminação por cômodo/dependência é estimada em função
 
 Essa regra permite que a carga mínima de iluminação seja calculada de forma reprodutível a partir das dimensões do cômodo, gerando como saída: (i) potência de iluminação por ambiente e (ii) potência total de iluminação da residência.
 
-\textbf{Observação normativa:} além da potência, a norma estabelece que, para cada cômodo ou dependência, deve ser previsto \textbf{pelo menos um ponto de luz fixo no teto}, comandado por interruptor, conforme o \textbf{subitem 9.5.2.1.1} da ABNT NBR 5410:2008.
+\textbf{Observação normativa:} além da potência, a norma estabelece que, para cada cômodo ou dependência, deve ser previsto \textbf{pelo menos um ponto de luz fixo no teto}, comandado por interruptor, conforme o \textbf{subitem 9.5.2.1.1} da ABNT NBR 5410 \cite{NBR5410:2004}.
 
 \subsection{Precisão de tomadas de uso geral}
-A previsão de TUG é realizada conforme o item 9.5.2 da ABNT NBR 5410:2008, diferenciando-se por tipo de ambiente. Além disso, no caso de banheiros e demais situações com restrições, deve-se respeitar as condições de instalação indicadas no item 9.1 (restrições/zonas aplicáveis ao ambiente).m}[]
+A previsão de TUG é realizada conforme o item 9.5.2 da ABNT NBR 5410 \cite{NBR5410:2004}, diferenciando-se por tipo de ambiente. Além disso, no caso de banheiros e demais situações com restrições, deve-se respeitar as condições de instalação indicadas no item 9.1 (restrições/zonas aplicáveis ao ambiente).m}[]
 
 De forma resumida, a metodologia aplica:
 
@@ -178,14 +179,14 @@ Como saída dessa etapa, o método obtém a quantidade mínima de TUG por ambien
 			\bottomrule
 		\end{tabular}
 	}{
-		\Fonte{Elaborado pelo autor (baseado na NBR 5410).}
+		\Fonte{Adaptado de ABNT \cite{NBR5410:2004}.}
     }
 \end{table}
 
 Com base nas regras de previsão de carga mínima de iluminação (item 9.5.2) e nas regras de TUG sintetizadas na Tabela \ref{tab:regras_tug} obtém-se a carga prevista de TUG por ambiente e a carga total de TUG da instalação, as quais são utilizadas nas etapas posteriores de divisão em circuitos terminais e dimensionamento.
 
 \subsection{Tomadas de uso específico - TUE e circuitos dedicados}
-As cargas específicas (TUE) são incorporadas ao modelo do projeto a partir das informações fornecidas pelo usuário (ex.: condicionador de ar, chuveiro elétrico, máquina de lavar). Conforme o \textbf{subitem 9.5.3.1} da ABNT NBR 5410:2008, todo ponto de utilização previsto para alimentar equipamento de modo exclusivo ou virtualmente dedicado, com corrente nominal superior a 10 A, deve constituir um circuito independente.
+As cargas específicas (TUE) são incorporadas ao modelo do projeto a partir das informações fornecidas pelo usuário (ex.: condicionador de ar, chuveiro elétrico, máquina de lavar). Conforme o \textbf{subitem 9.5.3.1} da ABNT NBR 5410 \cite{NBR5410:2004}, todo ponto de utilização previsto para alimentar equipamento de modo exclusivo ou virtualmente dedicado, com corrente nominal superior a 10 A, deve constituir um circuito independente.
 
 Na prática metodológica, isso implica:
 
@@ -242,7 +243,7 @@ Ao final do pipeline, verifica-se o atendimento às regras normativas citadas (i
 \section{Geração do memorial de cálculo e organização da documentação do projeto}
 Concluídas as etapas de previsão de cargas, divisão em circuitos terminais e dimensionamento, os resultados são consolidados em um memorial de cálculo. Esse documento tem por finalidade registrar, de forma organizada e rastreável, as premissas adotadas, os critérios normativos utilizados e os principais resultados obtidos, permitindo verificação técnica e comunicação clara do projeto.
 
-O memorial gerado segue uma estrutura padronizada, organizada em seções que refletem diretamente o pipeline descrito na Seção \todo{ADICIONAR REFERENCIA DA SEÇãO}, garantindo coerência entre: (i) informações de entrada, (ii) resultados intermediários e (iii) dimensionamento final.
+O memorial gerado segue uma estrutura padronizada, organizada em seções que refletem diretamente o pipeline descrito na Seção \ref{sec:pipeline}, garantindo coerência entre: (i) informações de entrada, (ii) resultados intermediários e (iii) dimensionamento final.
 
 \subsection{Organização do memorial}
 O memorial é composto, de modo geral, pelas seguintes seções:
@@ -314,7 +315,7 @@ A estrutura do memorial é construída para manter correspondência direta com o
 A validação da metodologia proposta foi conduzida por meio de um estudo de caso, no qual os resultados gerados pelo método foram comparados com referências acadêmicas consolidadas no contexto de instalações elétricas residenciais. O objetivo dessa validação é verificar se as saídas produzidas, tais como previsão de cargas mínimas, divisão em circuitos terminais, dimensionamento de condutores, seleção de dispositivos de proteção e, quando aplicável, balanceamento de fases, permanecem coerentes com os critérios normativos e com práticas de projeto utilizadas no ensino de engenharia elétrica.
 
 \subsection{Base de refrência e dados utilizados}
-Como referência principal, foi adotado um projeto elétrico residencial disponibilizado em contexto didático no curso de instalações elétricas residenciais da Universidade Federal do Ceará (UFC), que inclui enunciado do projeto, solução de referência (gabarito do docente) e soluções típicas produzidas por discentes. Essa escolha se justifica por se tratar de material estruturado com finalidade pedagógica e alinhado às exigências normativas, permitindo uma comparação objetiva entre o resultado esperado e o resultado obtido pela metodologia.
+Como referência principal, foi adotado um projeto elétrico residencial disponibilizado em contexto didático no curso de instalações elétricas residenciais da Universidade Federal do Ceará (UFC) \cite{ApostilaUFC}, que inclui enunciado do projeto, solução de referência (gabarito do docente) e soluções típicas produzidas por discentes. Essa escolha se justifica por se tratar de material estruturado com finalidade pedagógica e alinhado às exigências normativas, permitindo uma comparação objetiva entre o resultado esperado e o resultado obtido pela metodologia.
 
 A entrada do estudo de caso foi composta pelas informações essenciais do imóvel (ambientes e dimensões) e pelos parâmetros de fornecimento e premissas usuais de projeto (por exemplo, tensão e condições de instalação de referência), de modo a reproduzir condições equivalentes às utilizadas no exercício acadêmico.
 
@@ -323,10 +324,6 @@ A comparação entre os resultados foi feita considerando dois níveis:
 \begin{alineascomnumero}
 	    \item Conformidade normativa: verificação do atendimento aos requisitos e critérios prescritos na ABNT NBR 5410 aplicáveis às etapas contempladas no escopo do trabalho, incluindo a previsão de cargas mínimas, regras de pontos de tomada e pontos de iluminação, e requisitos de circuitos dedicados e separação funcional.
 	    \item Equivalência de projeto (critério de projetista): reconhecimento de que, mesmo com atendimento normativo, podem existir variações legítimas de projeto. Assim, foram considerados equivalentes resultados que, embora não idênticos em todos os detalhes ao gabarito, permanecem tecnicamente aceitáveis.
-	    \item Texto texto texto texto texto texto texto texto texto texto texto texto .
-	    \item Texto texto texto texto texto texto texto texto texto texto texto texto .
-	    \item Texto texto texto texto texto texto texto texto texto texto texto texto .
-	    \item Texto texto texto texto texto texto texto texto texto texto texto texto .
-    \end{alineascomnumero}
+\end{alineascomnumero}
 
 Esse critério é relevante especialmente na divisão de circuitos, onde diferentes agrupamentos podem ser adotados sem violar requisitos, desde que sejam respeitadas as regras de separação, exclusividade quando exigida e limites de potência/corrente aplicáveis.
