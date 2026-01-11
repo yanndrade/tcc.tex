@@ -1,17 +1,57 @@
 \chapter{Conclusões e Trabalhos Futuros}
 \label{chap:conclusoes-e-trabalhos-futuros}
 
-Parte final do texto na qual se apresentam as conclusões apoiadas no desenvolvimento do assunto. É a recapitulação sintética dos resultados obtidos. Pode apresentar recomendações e sugestões para pesquisas futuras.
 
-%\label{sec:contribuicoes-do-trabalho}
+\section{Conclusões}
+Este trabalho teve como objetivo desenvolver um agente de inteligência artificial, baseado em modelos de linguagem, capaz de auxiliar a elaboração de projetos elétricos residenciais de baixa tensão a partir de informações fornecidas pelo usuário, seja por conversação em linguagem natural, seja por interpretação de planta baixa em formato de imagem. A proposta integrou técnicas de consulta a documentos normativos para fundamentação técnica e um conjunto de rotinas determinísticas para garantir consistência dos resultados, culminando na geração automática de um memorial de cálculo inicial do projeto.
 
+Conforme apresentado no Capítulo \ref{chap:metodologia}, o método foi organizado como um pipeline de etapas bem definidas: aquisição e consolidação do escopo, previsão de cargas mínimas por ambiente, divisão em circuitos terminais, dimensionamento de condutores e dispositivos de proteção, determinação do tipo de fornecimento e verificação de coerência técnica do dimensionamento. A abordagem determinística aplicada às etapas de cálculo garante reprodutibilidade: para um mesmo conjunto de entradas, os resultados permanecem invariantes, o que é essencial em tarefas guiadas por critérios normativos.
 
+Os resultados do Capítulo \ref{chap:resultados} demonstraram que, nos três estudos de caso avaliados a partir de materiais didáticos de laboratório, as cargas mínimas por ambiente foram reproduzidas com concordância integral em relação às referências utilizadas (soluções manuais e gabaritos). Adicionalmente, observou-se convergência no tipo de fornecimento obtido para as premissas adotadas, com divergências pontuais apenas quando comparado a soluções de terceiros que assumiram escopos distintos (por exemplo, inclusão de tomadas de uso específico não previstas no enunciado). Ainda, a integridade elétrica do dimensionamento foi verificada pela manutenção da condição de coordenação entre corrente de projeto, dispositivo de proteção e capacidade de condução do condutor, sem necessidade de redimensionamentos no conjunto de casos analisados.
 
-%\label{sec:limitacoes}
+Do ponto de vista prático, o principal achado é que a aplicação de um agente com regras de cálculo determinísticas e suporte por documentação normativa pode reduzir significativamente o esforço inicial do projetista, oferecendo em curto intervalo de tempo um memorial de cálculo consistente como ponto de partida. Assim, a contribuição do trabalho se posiciona como uma ferramenta de apoio ao processo de projeto: o agente não substitui a responsabilidade técnica do profissional, mas entrega rapidamente uma base estruturada e verificável, sobre a qual o engenheiro pode evoluir decisões de projeto e detalhamentos adicionais.
 
+\section{Contribuições do trabalho}
+As principais contribuições deste trabalho podem ser sintetizadas como:
 
+\begin{itemize}
+    \item Proposição e implementação de um fluxo metodológico completo para projeto elétrico residencial de baixa tensão, organizado em etapas rastreáveis e alinhadas ao processo técnico de dimensionamento.
 
+    \item Integração entre um mecanismo de interação (texto e imagem) e rotinas determinísticas de cálculo, assegurando consistência e repetibilidade dos resultados nas etapas normativas do projeto.
 
+    \item Geração automática de um memorial de cálculo inicial, consolidando critérios adotados, tabelas e resultados do projeto, de forma estruturada e adequada ao uso como ponto de partida técnico.
 
+    \item Validação em estudos de caso provenientes de contexto didático, com comparação a referências consolidadas, evidenciando conformidade nos itens invariantes normativos e coerência no dimensionamento elétrico resultante.
+\end{itemize}
 
+\section{Limitações}
+Apesar dos resultados obtidos, o trabalho apresenta limitações decorrentes do recorte de escopo e das premissas adotadas nesta versão:
 
+\begin{itemize}
+    \item \textbf{Escopo técnico parcial do projeto:} a metodologia priorizou as etapas centrais de previsão de cargas, divisão de circuitos, dimensionamento de condutores e proteção e determinação do tipo de fornecimento. Verificações típicas de projeto completo, como queda de tensão, curto-circuito, aterramento, dispositivos diferenciais residuais (DR), seletividade e coordenação com DPS, não foram contempladas nesta versão.
+
+    \item \textbf{Premissas de projeto padronizadas:} foram adotados parâmetros usuais e simplificadores para viabilizar reprodutibilidade, tais como tensão nominal de 220~V, condições de instalação de referência e hipóteses padrão de agrupamento. Embora adequadas ao objetivo do trabalho, tais premissas podem não representar a totalidade de cenários encontrados em projetos reais.
+
+    \item \textbf{Dependência de qualidade da entrada por imagem:} a interpretação de planta baixa em formato de imagem depende de condições mínimas de legibilidade (qualidade da foto, resolução, presença de rótulos e dimensões), o que limita a robustez em situações com ruído, baixa iluminação ou ausência de informações explícitas.
+
+    \item \textbf{Diretrizes locais e generalização:} a determinação do tipo de fornecimento foi tratada a partir de diretrizes aplicáveis ao contexto local considerado, de modo que a adaptação para outras concessionárias e regiões requer parametrização adicional.
+
+    \item \textbf{Validação em contexto didático:} a avaliação foi conduzida com base em manuais e roteiros de laboratório e em referências acadêmicas. Ainda não foi realizada validação sistemática em projetos reais de escritórios de engenharia, com diversidade maior de cargas específicas, critérios de projetista e cenários de fornecimento.
+\end{itemize}
+
+\section{Trabalhos futuros}
+Como continuidade natural deste trabalho, destacam-se as seguintes extensões com potencial de alto impacto:
+
+\begin{itemize}
+    \item \textbf{Ampliação do escopo normativo e verificações de projeto:} incorporar rotinas de verificação de queda de tensão, curto-circuito, aterramento, requisitos de DR e restrições adicionais por ambiente, bem como critérios de seletividade e coordenação com DPS, aproximando o agente de um fluxo de projeto completo.
+
+    \item \textbf{Entrada avançada e maior robustez na interpretação da planta:} expandir a entrada para formatos técnicos (por exemplo, arquivos CAD) e aprimorar a extração de informações em plantas por imagem, tornando o processo menos sensível à qualidade da captura.
+
+    \item \textbf{Geração de artefatos de projeto:} além do memorial de cálculo, incluir geração de diagrama unifilar da instalação e do quadro de distribuição, bem como relatórios em formatos adicionais, ampliando a utilidade prática do sistema.
+
+    \item \textbf{Parametrização de critérios de projetista:} permitir que o usuário defina, na etapa conversacional, critérios como método de instalação, fatores de correção e premissas de detalhamento, reduzindo divergências associadas a escolhas de projeto e ampliando a flexibilidade do agente.
+
+    \item \textbf{Validação ampliada com usuários reais:} conduzir estudos com discentes, empresas juniores e profissionais de engenharia elétrica para comparar resultados, coletar feedback, medir ganhos de produtividade e refinar critérios de interação, aproximando a solução de um cenário de uso prático e recorrente.
+
+    \item \textbf{Generalização para múltiplas concessionárias e cenários de fornecimento:} ampliar a base de diretrizes de fornecimento, incluindo regras de diferentes concessionárias, e avaliar sistematicamente casos com fornecimento bifásico e trifásico com balanceamento.
+\end{itemize}
