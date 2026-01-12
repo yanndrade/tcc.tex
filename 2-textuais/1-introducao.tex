@@ -1,32 +1,37 @@
 \chapter{Introdução}
-\label{cap:introducao}
+\label{chap:introducao}
 
-%Para começar a usar este \textit{template}, na plataforma \textit{ShareLatex}, vá nas opções (três barras vermelhas horizontais) no canto esquerdo superior da tela e clique em "Copiar Projeto" e dê um novo nome para o projeto. 
+Nos últimos anos, modelos de linguagem de grande porte (\textit{Large Language Models} -- LLMs) e técnicas de recuperação de informação têm ampliado as possibilidades de sistemas capazes de interagir em linguagem natural e apoiar atividades técnicas. Em diferentes áreas da engenharia, observa-se um movimento de adoção de soluções baseadas em inteligência artificial para acelerar etapas repetitivas, reduzir retrabalho e melhorar a rastreabilidade de decisões. 
 
-Para começar a utilizar este \textit{template}, siga o tutorial clicando no seguinte \textit{link}:
-\url{https://biblioteca.ufc.br/wp-content/uploads/2015/09/tutorial-sharelatex.pdf}
+No contexto de instalações elétricas residenciais de baixa tensão, uma parte relevante do trabalho de projeto envolve a consolidação de requisitos do imóvel, o levantamento de cargas mínimas por ambiente, a organização em circuitos terminais e o dimensionamento inicial de condutores e dispositivos de proteção, sempre sob restrições normativas. No Brasil, a ABNT NBR 5410 estabelece critérios mínimos e requisitos de segurança para instalações elétricas de baixa tensão, incluindo regras objetivas para previsão de cargas e pontos de utilização, além de diretrizes associadas à organização dos circuitos. Adicionalmente, diretrizes da concessionária podem influenciar decisões como o tipo de fornecimento aplicável e critérios de entrada de energia.
 
-Neste \textit{template}, o autor irá encontrar diversas instruções e exemplos dos recursos do uso do \LaTeX~na plataforma \textit{Overleaf}. O \LaTeX~foi desenvolvido, inicialmente, na década de 80, por Leslie Lamport e é utilizado amplamente na produção de textos matemáticos e científicos, devido a sua alta qualidade tipográfica \cite{goossens1994latex}. 
+Apesar do potencial de LLMs em tarefas de linguagem, o uso direto desses modelos para dimensionamento elétrico apresenta desafios, especialmente quanto à necessidade de conformidade normativa, reprodutibilidade e justificativa técnica. Dessa forma, este trabalho investiga uma abordagem que combina interação em linguagem natural e recuperação de conhecimento normativo (RAG) com rotinas determinísticas de cálculo e verificação, visando produzir resultados consistentes, auditáveis e úteis como ponto de partida para o projetista.
 
-O \textit{ShareLatex} é uma plataforma \textit{online} que pode ser acessado por meio de qualquer navegador de internet até mesmo de um \textit{smartphone}. Essa plataforma dispensa a instalação de aplicativos no computador para desenvolver trabalhos em \LaTeX. Também, não é necessário instalar \textit{packages}, ou seja, pacotes que permitem diferentes efeitos na formatação e no visual do trabalho. Todos os \textit{packages} que este \textit{template} utiliza são encontrados \textit{online}. 
+\section{Motivação}
+A motivação central deste trabalho é demonstrar que é possível empregar técnicas modernas de inteligência artificial para apoiar a engenharia elétrica de forma responsável, preservando o caráter normativo do domínio. Em particular, busca-se contribuir para o aumento de produtividade na etapa inicial de projeto, reduzindo o tempo dedicado a tarefas repetitivas e fornecendo rapidamente um memorial de cálculo com rastreabilidade das premissas e resultados. 
 
-Apresentam-se, também, neste modelo, algumas orientações de como desenvolver um trabalho acadêmico. Entretanto, este arquivo deve ser editado pelo autor de acordo com o seu trabalho sendo que a formatação já está de acordo com o aceito pela Universidade Federal do Ceará.  
+Do ponto de vista acadêmico, a proposta também é relevante por aproximar o discente de um fluxo de projeto estruturado e por permitir comparações objetivas com soluções de referência, evidenciando invariantes normativas e variações legítimas por critério de projeto.
 
-A introdução, tem como finalidade, dar ao leitor uma visão concisa do tema investigado, ressaltando-se o assunto de forma delimitada, ou seja, enquadrando-o sob a perspectiva de uma área do conhecimento, de forma que fique evidente sobre o que se está investigando; a justificativa da escolha do tema; os objetivos do trabalho; o objeto de pesquisa que será investigado. Observe que não se divide a introdução em seções, mas a mesma informa como o trabalho ao todo está organizado.
+\section{Objetivos}
 
+\subsection{Objetivo geral}
+Desenvolver e avaliar uma metodologia, implementada em um protótipo funcional, para um agente baseado em LLM com Recuperação Aumentada (RAG) capaz de realizar o dimensionamento inicial de instalações elétricas residenciais de baixa tensão e gerar automaticamente um memorial de cálculo, em conformidade com critérios aplicáveis da ABNT NBR 5410 e diretrizes locais consideradas.
 
+\subsection{Objetivos específicos}
+\begin{itemize}
+    \item Estruturar a aquisição e consolidação de requisitos do projeto por meio de conversação em linguagem natural e/ou interpretação de planta baixa em formato de imagem.
+    \item Construir um modelo estruturado do imóvel para armazenar ambientes, dimensões e cargas previstas, mantendo rastreabilidade entre entradas, resultados intermediários e saídas.
+    \item Implementar um pipeline determinístico para previsão de cargas mínimas, divisão em circuitos terminais, dimensionamento de condutores e dispositivos de proteção, e determinação do tipo de fornecimento.
+    \item Realizar verificações de conformidade nas etapas do pipeline, prevendo realimentação quando inconsistências forem detectadas.
+    \item Validar o método por meio de estudos de caso didáticos, comparando resultados com referências acadêmicas (gabaritos e soluções manuais).
+\end{itemize}
 
-%Testando o símbolo $\symE$
+\section{Metodologia}
+A pesquisa adota uma abordagem aplicada, com implementação de um protótipo funcional e avaliação por estudos de caso. O método integra: (i) aquisição de informações por texto e/ou imagem; (ii) consolidação das entradas em um modelo estruturado do imóvel; (iii) execução de rotinas determinísticas baseadas em regras normativas para cálculo de cargas, divisão de circuitos e dimensionamentos; e (iv) comparação dos resultados com materiais de referência do contexto didático. O detalhamento completo do método é apresentado no Capítulo \ref{chap:metodologia} e os resultados da validação no Capítulo \ref{chap:resultados}.
 
-%\lipsum[5]  % Simulador de texto, ou seja, é um gerador de lero-lero.
+\section{Delimitação do escopo}
+O escopo deste trabalho concentra-se no dimensionamento inicial de instalações residenciais de baixa tensão, contemplando cargas mínimas de iluminação e tomadas de uso geral, divisão em circuitos terminais, dimensionamento de condutores e dispositivos de proteção por critérios de capacidade de condução de corrente e coordenação entre proteção e condutor, e determinação do tipo de fornecimento conforme diretrizes locais consideradas. Aspectos como queda de tensão, curto-circuito, DR, DPS, aterramento e diagramas unifilares são tratados como extensões futuras.
 
-%	\begin{alineas}
-%		\item Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dictum sed tortor nec viverra.
-%		\item Praesent vitae nulla varius, pulvinar quam at, dapibus nisi. Aenean in commodo tellus. Mauris molestie est sed justo malesuada, quis feugiat tellus venenatis.
-%		\item Praesent quis erat eleifend, lacinia turpis in, tristique tellus. Nunc dictum sed tortor nec viverra.
-%		\item Mauris facilisis odio eu ornare tempor. Nunc dictum sed tortor nec viverra.
-%		\item Curabitur convallis odio at eros consequat pretium.
-%	\end{alineas}
-	
+\section{Estrutura do trabalho}
+Este trabalho está organizado em cinco capítulos. O Capítulo 1 apresenta a contextualização, motivação, objetivos, metodologia e estrutura do texto. O Capítulo 2 discute a fundamentação teórica necessária, incluindo normas e conceitos relacionados a instalações residenciais e aos princípios de agentes baseados em LLMs e RAG. O Capítulo 3 descreve a metodologia proposta. O Capítulo 4 apresenta os resultados e a validação por estudos de caso. Por fim, o Capítulo 5 apresenta as conclusões, limitações e trabalhos futuros.
 
-	
