@@ -1,155 +1,284 @@
-\chapter{Título do segundo capítulo}
-\label{cap:fundamentacao-teorica}
+\chapter{Fundamentação Teórica}
+\label{chap:fundamentacao_teorica}
 
-Alguns autores preferem fazer uma ``fundamentação teórica'' no segundo capítulo, outros, preferem fazer uma ``revisão da literatura''. Entretanto, isto é particular de cada trabalho e o autor deve escolher o título mais adequado para o capítulo. Consultar o orientador é importante para determinar o título apropriado.
+Este capítulo reúne os principais conceitos necessários para compreender a proposta e os
+resultados deste trabalho. Inicialmente, são discutidos fundamentos relacionados a instalações
+elétricas residenciais de baixa tensão, com ênfase no papel do \textit{memorial de cálculo} como
+documento técnico de consolidação do raciocínio de projeto. Em seguida, são apresentados os
+fundamentos normativos empregados no levantamento de cargas mínimas, na divisão em circuitos
+terminais e nos critérios de dimensionamento de condutores e dispositivos de proteção, tomando
+como base a ABNT NBR 5410 \cite{NBR5410} e as diretrizes da concessionária consideradas no
+estudo \cite{ET124_ENEL}.
 
-Evite começar da seção secundária, ou seja, não passe direto do título do capítulo para o título da seção secundária. Escreva um texto para introduzir as seções subsequentes. Lembre-se de utilizar primeira letra maiúscula quando estiver se referindo a um objeto com numeração específica como capítulo, seção, subseção, figura, tabela, quadro, equação, normalmente, se escreve a primeira letra maiúscula da palavra do objeto seguido do \textit{label}. Por exemplo, a Seção \ref{sec:citacoes} explica como fazer citações bibliográficas. Observe no código fonte deste texto como foi feita a referência cruzada. Isso permite enumerar a seção do modo automático o que facilita caso novas seções sejam criadas.  
+Além da fundamentação normativa, este capítulo também introduz os conceitos computacionais
+que viabilizam a automatização parcial do processo de elaboração do memorial de cálculo,
+incluindo noções de Modelos de Linguagem de Grande Escala (LLMs), agentes com uso de
+ferramentas e Recuperação Aumentada por Busca (RAG). Destaca-se, ainda, a separação entre:
+(i) componentes determinísticos, responsáveis pelos cálculos e pela aplicação consistente das
+regras; e (ii) componentes linguísticos, responsáveis por organizar, explicar e apresentar os
+resultados de forma coerente e rastreável ao usuário. Por fim, são contextualizados os fundamentos
+associados à interpretação de informações a partir de plantas em imagem e suas limitações
+práticas, uma vez que a qualidade e precisão da entrada impactam diretamente as estimativas
+utilizadas nas etapas de cálculo.
 
-\section{Citações bibliográficas}\label{sec:citacoes}
+\section{Instalações elétricas residenciais e memorial de cálculo}
+\label{sec:ft_instalacoes_memorial}
 
-    Esta frase mostra como citar um livro sobre descargas atmosféricas \cite{rakov2003lightning}. Também podem ser citados \textit{sites} como \citeonline{elat2015densidade}. Você precisa escrever o código da referência no arquivo "referencia.bib" dentro da pasta "elementos-pos-textuais". Veja esse, onde estão alguns exemplos que já foram testados.        
+\subsection{Objetivo do projeto elétrico em Baixa Tensão (BT)}
 
-    Referenciando outro livro \cite{LangtangenLogg2017}. Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto. Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto. Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto. Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.
+Uma instalação elétrica residencial de baixa tensão pode ser entendida como o conjunto de
+circuitos, condutores, dispositivos de proteção, pontos de utilização e quadros de distribuição
+destinados a atender, com segurança e funcionalidade, as demandas de energia elétrica de uma
+unidade habitacional. Em termos de projeto, busca-se garantir o suprimento adequado das
+cargas previstas, assegurando simultaneamente requisitos fundamentais como proteção contra
+sobrecorrentes, limitação de efeitos térmicos, organização e manutenção, conforme práticas
+normativas e de engenharia adotadas no contexto nacional.
 
-    Referenciando outro site \cite{secretaria1999}. Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto. Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto. Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto. Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto. Citando uma norma \cite{NBR10520:2002}.
-        
-    Citação de duas referências que concordam entre si \cite{Almeida2018,Gondim2017}. Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto. Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto. Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto. Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto. Citando um manual \cite{manuais1989}. 
-        
-    Outro tipo de citação é a citação literal ou direta com mais de três linhas. Este tipo de citação deve ser destacada com recuo de $4~cm$ da margem esquerda com letra menor (tamanho 10), sem aspas e com espaçamento simples.  Para exemplificar esse tipo de citação, considere a afirmação de \citeonline{feitosa2016}:
-    \begin{citacao}
-        A cultura é o processo através do qual o homem cria o algo onde antes imperava o nada. Esse algo é toda complexidade de criações simbólicas, de sentidos e significados que damos às coisas e ao mundo. Um ``algo'' que não se sustenta se não se entender os processos culturais como mecanismos de mediação entre nós e os fenômenos. Assim, mais do que apenas um elemento da comunicação, a mediação é, por excelência, cultural. As diversas modalidades de mediação são apenas sotaques diferenciados dessa mediação cultural. Assim é a mediação informacional.
-    \end{citacao}
-        
-    A afirmação do parágrafo anterior também pode ser reproduzida com a citação na final como mostra o exemplo a seguir: 
-    \begin{citacao}
-        A cultura é o processo através do qual o homem cria o algo onde antes imperava o nada. Esse algo é toda complexidade de criações simbólicas, de sentidos e significados que damos às coisas e ao mundo. Um “algo” que não se sustenta se não se entender os processos culturais como mecanismos de mediação entre nós e os fenômenos. Assim, mais do que apenas um elemento da comunicação, a mediação é, por excelência, cultural. As diversas modalidades de mediação são apenas sotaques diferenciados dessa mediação cultural. Assim é a mediação informacional. \cite{feitosa2016}.
-    \end{citacao}
-        
-%Mais exemplos e opções de citações podem ser encontradas em:
-%        https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management
-%        https://github.com/cfgnunes/latex-cefetmg/blob/master/latex-cefetmg/03-elementos-pos-textuais/apendices.tex            
+No processo tradicional de elaboração de um projeto elétrico residencial, parte-se de um
+levantamento de cargas, que pode ser baseado em prescrições mínimas normativas e/ou em
+equipamentos efetivamente previstos, para então definir a potência instalada e proceder à
+divisão da instalação em circuitos terminais. Essa divisão impacta diretamente a organização do
+quadro de distribuição, a seleção dos condutores, a escolha dos dispositivos de proteção e, quando
+aplicável, a distribuição de cargas entre fases.
 
-\section{Inserindo figuras}\label{sec:figuras}
-    
-    A Figura \ref{fig:reitoria} apresenta a fotografia da reitoria da Universidade Federal do Ceará. Observe a estrutura do código para ver como inserir figuras. No título, comece especificando o tipo de figura. Por exemplo, fotografia, desenho, diagrama, fluxograma, gráfico e etc. O espaçamento entre linhas no título é de $1~pt$ (espaçamento simples), apenas a primeira letra da frase é maiúscula. As demais palavras são escritas com letra maiúsculas somente quando são nomes próprios e não há ponto final. 
-    
-    As margens do título da figura são delimitadas pelo tamanho da figura. Por isso, procure ajustar o tamanho da figura para preencher a largura delimitada pelas margens esquerda e direita da página que possui $16~cm$ de largura. Não esqueça de indicar fonte da figura. O autor deve evitar deixar figuras pequenas menores do que $7~cm$ de largura.
-    
-    A posição da figura deve ser o mais próximo logo após ter sido chamada no texto (a figura nunca deve aparecer antes de ter sido anunciada no texto). 
-    
-    %troque h pelo b ou t para mudar a posição da figura.
- 	\begin{figure}[h!] 
-   	    \captionsetup{width=16cm}%Da mesma largura que a figura
-		\Caption{\label{fig:reitoria} Fotografia da reitoria da Universidade Federal do Ceará}
-		\UFCfig{}{
-			\includegraphics[width=16cm]{figuras/exemplo-1}
-		}{
-			\Fonte{\citeonline{UFC2012}.}
-		}	
-	\end{figure}
-	
-    Texto1 texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto1.
+\subsection{O que é memorial e por que ele é útil}
 
-    Texto2 texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto. Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto2.
+O \textit{memorial de cálculo} representa um documento técnico que consolida, de forma estruturada,
+os principais elementos do raciocínio de projeto. Em geral, ele registra:
+(i) hipóteses e critérios adotados; (ii) levantamento e composição de cargas; (iii) divisão em
+circuitos; (iv) dimensionamento de condutores; (v) dimensionamento e seleção de dispositivos
+de proteção; e (vi) sínteses e tabelas finais que facilitem a verificação e o uso posterior do documento.
+Neste trabalho, o memorial de cálculo é o principal artefato de saída do sistema proposto e,
+na versão atual, é gerado automaticamente em formato de documento \textbf{Microsoft Word}.
 
-    Texto3 texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto. Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto3.
+A utilidade do memorial de cálculo é múltipla. Do ponto de vista técnico, ele fornece
+\textit{rastreabilidade}: permite que um terceiro compreenda quais regras, premissas e verificações
+levaram aos valores e escolhas apresentados. Do ponto de vista de validação, o memorial facilita
+a checagem de coerência entre carga prevista, circuitos definidos, seções de condutores e proteções
+especificadas, reduzindo ambiguidades e erros de comunicação. Em cenários acadêmicos e
+profissionais, esse tipo de registro também tem valor por tornar o projeto \textit{auditável}, isto é,
+verificável a partir de critérios explicitados.
 
-    Texto4 texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto. Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto4.
+\section{Norma ABNT NBR 5410: previsão de cargas mínimas}
+\label{sec:ft_nbr5410_cargas_minimas}
 
-    A Figura \ref{fig:sondas} Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto. Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto3.
+Uma etapa essencial do projeto elétrico residencial é a \textbf{previsão de cargas mínimas}
+associadas a \textit{iluminação} e \textit{tomadas de uso geral}. Na ausência de um levantamento
+completo baseado em equipamentos efetivamente definidos, a ABNT NBR 5410 estabelece
+\textbf{critérios prescritivos mínimos} que permitem estimar a carga instalada de forma
+padronizada e consistente \cite{NBR5410}.
 
-	\begin{figure}[h!]
-		\centering
-		\captionsetup{width=14cm}%Da mesma largura que a figura
-		\Caption{\label{fig:sondas} Gráfico da Atmosfera Superior}	
-		\UFCfig{}{
-			\includegraphics[width=14cm]{figuras/sondas}
-		}{
-			\Fonte{adaptado da \citeonline{NASA2016}.}}	
-	\end{figure}
+De modo geral, a norma utiliza valores em \textbf{VA} para essas previsões mínimas, pois se trata
+de uma estimativa de potência aparente associada a pontos de utilização típicos.
 
-    Texto5 texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto5.
+\subsection{Iluminação (regras por área)}
+\label{subsec:ft_nbr5410_iluminacao}
 
-    Texto6 texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto5.
+Para circuitos de iluminação, a ABNT NBR 5410 define uma carga mínima por cômodo ou
+dependência em função de sua área \cite{NBR5410}. Em termos práticos:
 
-    Texto7 texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto6.
+\begin{itemize}
+  \item \textbf{Ambientes com área $A \leq 6\ \text{m}^2$:} deve ser prevista \textbf{carga mínima de 100 VA}.
+  \item \textbf{Ambientes com área $A > 6\ \text{m}^2$:} deve ser prevista \textbf{carga mínima de 100 VA}
+  para os primeiros $6\ \text{m}^2$, acrescida de \textbf{60 VA} para cada \textbf{acréscimo de $4\ \text{m}^2$}
+  inteiros além dos $6\ \text{m}^2$.
+\end{itemize}
 
-    Evite terminar seções, capítulos e etc com figura. Procure escrever mais.
+Uma forma compacta de representar a regra, para $A>6\ \text{m}^2$, é:
+$$ P_{\text{ilum}} = 100 + 60 \cdot \left\lfloor \frac{A-6}{4} \right\rfloor \quad [\text{VA}] $$
+onde $\lfloor \cdot \rfloor$ denota a parte inteira (isto é, considera-se apenas incrementos completos
+de $4\ \text{m}^2$).
 
-\section{Inserindo tabelas}\label{sec:tabelas}
-    
-    A Tabela \ref{tab:exemplo-1}... texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto. Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.
-	
-	\begin{table}[!h]
-	\captionsetup{width=7cm}%Deixe da mesma largura que a tabela
-	\Caption{\label{tab:exemplo-1} Um Exemplo de tabela alinhada que pode ser longa ou curta}%
-	\IBGEtab{}{%
-		\begin{tabular}{ccc}
-			\toprule
-			Nome & Nascimento & Documento \\
-			\midrule \midrule
-			Maria da Silva & 11/11/1111 & 111.111.111-11 \\
-			Maria da Silva & 11/11/1111 & 111.111.111-11 \\
-			Maria da Silva & 11/11/1111 & 111.111.111-11 \\
-			\bottomrule
-		\end{tabular}%
-	}{%
-	\Fonte{o autor.}%
-	\Nota{esta é uma nota, que diz que os dados são baseados na
-		regressão linear.}%
-	\Nota[Anotações]{uma anotação adicional, seguida de várias outras.}%
-    }
-    \end{table}
+Além da potência mínima, a norma também estabelece a necessidade de previsão de pelo menos
+\textbf{um ponto de luz fixo no teto} por cômodo ou dependência.
 
-	%\begin{table}[h!]	
-	%	\centering
-	%	\Caption{\label{tab:exemplo-1} Exemplo de tabela}	
-	%	\UFCtab{}{
-	%		\begin{tabular}{cll}
-	%			\toprule
-	%			Ranking & Exon Coverage & Splice Site Support \\
-	%			\midrule \midrule
-	%			E1 & Complete coverage by a single transcript & Both splice sites\\
-	%			E2 & Complete coverage by more than a single transcript & Both splice sites\\
-	%			E3 & Partial coverage & Both splice sites\\
-	%			E4 & Partial coverage & One splice site\\
-	%			E5 & Complete or partial coverage & No splice sites\\
-	%			E6 & No coverage & No splice sites\\
-	%			\bottomrule
-	%		\end{tabular}
-	%	}{
-	%	\Fonte{elaborado pelo autor.}
-	%}
-	%\end{table}
+\subsection{Tomadas de uso geral (TUG)}
+\label{subsec:ft_nbr5410_tug}
 
-\subsection{Exemplo de subseção} \label{sec:ex_sec}
-	
-    Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.
+Para tomadas de uso geral, a ABNT NBR 5410 prescreve quantidades mínimas de pontos e
+potências mínimas a serem atribuídas, variando conforme o tipo de ambiente \cite{NBR5410}.
 
-    %acrlong{DATASUS},\acrlong{DNV},\acrlong{DO},\acrlong{ESF},\acrlong{IBGE},\acrlong{MFC},\acrlong{MI},\acrlong{MS},\acrlong{NV},\acrlong{ODM},\acrlong{OI},\acrlong{OMS},\acrlong{ONU},\acrlong{PNI},\acrlong{PSF},\acrlong{RIPSA},\acrlong{RN},\acrlong{SIM},\acrlong{SINASC},\acrlong{SUS},\acrlong{TMI},\acrlong{TMMFC}
+\subsubsection{Banheiros}
+Deve ser previsto \textbf{no mínimo um ponto de tomada} próximo ao lavatório. Para efeito de previsão, adota-se \textbf{600 VA por tomada}.
 
+\subsubsection{Cozinhas, copas, áreas de serviço e locais semelhantes}
+Deve ser previsto \textbf{no mínimo um ponto de tomada para cada $3{,}5$ m, ou fração, de perímetro}.
+Para atribuição de potência:
+\begin{itemize}
+  \item \textbf{600 VA} por ponto, \textbf{até três pontos};
+  \item \textbf{100 VA} por ponto, para os \textbf{excedentes}.
+\end{itemize}
 
-    \begin{alineascomponto}
-	    \item Integer non lacinia magna. Aenean tempor lorem tellus, non sodales nisl commodo ut
-	    \item Proin mattis placerat risus sit amet laoreet. Praesent sapien arcu, maximus ac fringilla efficitur, vulputate faucibus sem. Donec aliquet velit eros, sit amet elementum dolor pharetra eget
-	    \item Integer eget mattis libero. Praesent ex velit, pulvinar at massa vel, fermentum dictum mauris. Ut feugiat accumsan augue, et ultrices ipsum euismod vitae
-	    \begin{subalineascomponto}
-		    \item Integer non lacinia magna. Aenean tempor lorem tellus, non sodales nisl commodo ut
-		    \item Proin mattis placerat risus sit amet laoreet.
-	    \end{subalineascomponto}
-    \end{alineascomponto}
+\subsubsection{Salas e dormitórios}
+Deve ser previsto \textbf{pelo menos um ponto de tomada para cada $5$ m, ou fração, de perímetro}.
+Para previsão, adota-se \textbf{100 VA por tomada}.
 
-\subsection{Uso de siglas} \label{sec:siglas}
+\subsubsection{Demais cômodos e dependências}
+Para outros ambientes:
+\begin{itemize}
+  \item Área $\le 6\ \text{m}^2$: \textbf{ao menos um ponto};
+  \item Área $> 6\ \text{m}^2$: \textbf{um ponto a cada $5$ m, ou fração, de perímetro}.
+\end{itemize}
+Em ambos os casos, atribui-se \textbf{100 VA por tomada}.
 
-    Para utilizar siglas, primeiro defina a sigla no arquivo "lista-de-abreviaturas-e-siglas"~ dentro da pasta "1-pre-textuais" com o comando 
-    \begin{verbatim}
-        \newacronym{ABNT}{ABNT}{Associação Brasileira de Normas Técnicas}
-    \end{verbatim}
-    Depois chame a sigla com o comando:
-    \begin{verbatim}
-        \gls{ABNT}
-    \end{verbatim}
-    Fica assim: \gls{ABNT}. A primeira vez que o comando é usado para uma determinada sigla, aparece o significado por extenso da sigla com a sua abreviação em seguida. A partir da segunda vez que o comando para uma determinada sigla é usado, aparace apenas a sigla. Por exemplo: \gls{ABNT}.  
-    
-    Veja o código fonte de outros exemplos: Teste de siglas \gls{TEST}, outros exemplos de siglas: \gls{DA}, \gls{MCEG}. 
-    Repare que sempre as siglas estão sendo definidas primeiramente no arquivo ``lista-de-abreviaturas-e-siglas''.
+\subsection{TUE e circuitos dedicados}
+\label{subsec:ft_nbr5410_tue}
+
+Além das TUG, a ABNT NBR 5410 estabelece que pontos destinados a alimentar, de modo
+exclusivo ou virtualmente dedicado, equipamentos com \textbf{corrente nominal superior a 10 A}
+devem constituir \textbf{circuito independente} \cite{NBR5410}. Isso caracteriza as \textbf{tomadas de uso específico (TUE)}.
+
+Essa prescrição reduz interferências e evita sobrecarga de circuitos de uso geral. Além disso, mesmo para equipamentos com corrente inferior a 10 A, pode ser recomendável (a critério do projetista) a adoção de circuitos exclusivos quando houver características específicas (motores, cargas sensíveis, uso contínuo), demonstrando que existe um espaço de \textbf{critério de projetista} para decidir quando a segregação é desejável.
+
+\section{Divisão em circuitos terminais (NBR 5410 + boas práticas)}
+\label{sec:ft_divisao_circuitos}
+
+Após a previsão das cargas, a instalação deve ser \textbf{dividida em circuitos terminais}.
+A ABNT NBR 5410 estabelece essa divisão como requisito para segurança, manutenção e redução de interferências.
+
+\subsection{Separação entre iluminação e TUG}
+\label{subsec:ft_sep_ilum_tomadas}
+
+Como diretriz geral e boa prática amplamente aceita, recomenda-se manter \textbf{circuitos de iluminação separados dos circuitos de tomadas}, evitando que falhas em cargas de tomadas provoquem desligamentos de iluminação.
+Essa segregação facilita também a manutenção e o diagnóstico de falhas.
+
+\subsection{Exclusividade para cozinha, área de serviço e TUE}
+\label{subsec:ft_exclusividade_cozinha}
+
+A norma estabelece situações em que circuitos exclusivos são necessários:
+\begin{itemize}
+  \item \textbf{TUE (Corrente > 10 A):} Devem constituir circuitos independentes.
+  \item \textbf{Cozinhas, áreas de serviço e afins:} Os pontos de tomada desses ambientes devem ser atendidos por \textbf{circuitos exclusivamente destinados}
+a eles \cite{NBR5410}.
+\end{itemize}
+
+\subsection{Limites típicos por circuito (boas práticas)}
+\label{subsec:ft_limites_potencia}
+
+Embora a norma defina requisitos mínimos, é prática comum adotar limites de potência para evitar correntes elevadas em circuitos de uso geral e facilitar a proteção. No contexto deste trabalho, consideram-se como \textbf{boas práticas}:
+
+\begin{itemize}
+  \item \textbf{Iluminação:} Limitar a potência para evitar desligamento de grandes áreas em caso de falha. Em 220 V, valores da ordem de 2500 VA são usuais.
+  \item \textbf{TUG:} Limitar a potência total para manter correntes compatíveis com disjuntores de uso geral (ex.: 16 A ou 20 A). Em 220 V, limites da ordem de 4300 VA são referências comuns de projeto.
+\end{itemize}
+
+\subsection{Circuitos de reserva}
+\label{subsec:ft_circuitos_reserva}
+
+A ABNT NBR 5410 estabelece que os quadros de distribuição devem prever \textbf{capacidade de reserva} (espaço físico) para ampliações futuras \cite{NBR5410}.
+Na prática de projeto, isso se materializa prevendo \textbf{circuitos reserva} no quadro, dimensionados e deixados vagos para uso futuro. A quantidade de reservas depende do número de circuitos efetivos (ex.: para quadros com até 6 circuitos, prever no mínimo 2 reservas).
+
+\section{Dimensionamento de condutores e proteções (NBR 5410)}
+\label{sec:ft_dimensionamento_condutores}
+
+Uma vez definidos os circuitos, procede-se ao \textbf{dimensionamento dos condutores} e à \textbf{seleção dos dispositivos de proteção}.
+
+\subsection{Corrente de projeto, ampacidade e seção mínima}
+\label{subsec:ft_corrente_ampacidade}
+
+\paragraph{Corrente de projeto ($I_B$):} Calculada a partir da potência do circuito e da tensão ($I_B = S/V$).\paragraph{Ampacidade ($I_Z$):} A capacidade de condução de corrente do condutor depende do método de instalação, material, isolação e agrupamento. A seção deve ser tal que $I_Z \ge I_B$ (considerando fatores de correção).\paragraph{Seção mínima:} A norma impõe seções mínimas por razões mecânicas, independentemente da corrente calculada:
+\begin{itemize}
+  \item \textbf{$1{,}5~\mathrm{mm}^2$} para iluminação;
+  \item \textbf{$2{,}5~\mathrm{mm}^2$} para circuitos de força (tomadas).
+\end{itemize}
+
+\subsection{Critério de coordenação: $I_B \le I_N \le I_Z$}
+\label{subsec:ft_criterio_disjuntor}
+
+Para proteção contra sobrecarga, deve-se atender à relação fundamental de coordenação:
+$$ I_B \le I_N \le I_Z $$
+onde $I_B$ é a corrente de projeto, $I_N$ é a corrente nominal do disjuntor e $I_Z$ é a capacidade de condução do condutor nas condições instaladas. Isso garante que o disjuntor não dispare em operação normal ($I_B \le I_N$) e que proteja o cabo antes que este sobreaqueça ($I_N \le I_Z$).
+
+\subsection{Condutores de Proteção (PE) e Neutro}
+\label{subsec:ft_pe_neutro}
+
+\paragraph{PE (Terra):} Prover caminho de baixa impedância para faltas. Sua seção é definida normativamente com base na seção do condutor de fase (geralmente igual até $16~\mathrm{mm}^2$).\paragraph{Neutro:} Condutor de retorno. Em circuitos monofásicos, sua seção é, em regra, igual à do condutor de fase.
+
+\subsection{Hipóteses adotadas no escopo (220 V, B1, PVC)}
+\label{subsec:ft_hipoteses}
+
+Para viabilizar a automatização determinística neste trabalho, são adotadas hipóteses de projeto usuais para residências de padrão popular/médio na região do estudo:
+\begin{itemize}
+    \item Tensão de fase-neutro/fase-fase conforme concessionária (ex.: 220 V);
+    \item Método de instalação \textbf{B1} (condutores em eletroduto embutido em alvenaria);
+    \item Condutores de \textbf{Cobre} com isolação \textbf{PVC} ($70^{\circ}$C);
+    \item Consideração típica de \textbf{3 condutores carregados} em agrupamentos iniciais (F+N ou F+F, agrupados), ajustável conforme o caso.
+\end{itemize}
+
+\section{Tipo de fornecimento e diretrizes da concessionária (ET-124 / ENEL Ceará)}
+\label{sec:ft_tipo_fornecimento}
+
+Além da NBR 5410, o projeto deve respeitar as normas da concessionária local (ET-124 da ENEL Ceará) \cite{ET124}.
+
+\subsection{Enquadramento do fornecimento pela potência instalada}
+\label{subsec:ft_enquadramento}
+
+A ET-124 define se o fornecimento será \textbf{monofásico, bifásico ou trifásico} com base na \textbf{potência instalada total} da unidade consumidora.
+A potência instalada é a soma das potências atribuídas a todas as cargas (iluminação, TUG e TUE). Faixas de potência (ex.: até 15 kW, até 25 kW) determinam o tipo de atendimento.
+
+\subsection{Impactos do tipo de fornecimento no projeto}
+\label{subsec:ft_impacto_fornecimento}
+
+O tipo de fornecimento afeta:
+\begin{enumerate}
+    \item A arquitetura do quadro (monofásico vs. trifásico);
+    \item O padrão de entrada e medição;
+    \item A necessidade de \textbf{balanceamento de fases} na distribuição dos circuitos, visando equilibrar as cargas entre as fases disponíveis.
+\end{enumerate}
+
+\section{IA: Modelos de Linguagem (LLM)}
+\label{sec:ft_llm}
+
+\subsection{Conceito, capacidades e limitações}
+
+Modelos de Linguagem de Grande Escala (LLMs) são sistemas treinados para prever e gerar texto de forma coerente. Eles são capazes de interpretar linguagem natural, resumir informações e estruturar dados. Contudo, operam de forma probabilística.
+
+\subsection{Por que LLM sozinho não serve para cálculo normativo}
+
+O uso isolado de LLMs para engenharia apresenta riscos:
+\begin{itemize}
+    \item \textbf{Alucinações:} Geração de informações incorretas com alta confiança;
+    \item \textbf{Inconsistência:} Falta de repetibilidade nos cálculos;
+    \item \textbf{Dificuldade matemática:} Erros em operações aritméticas complexas.
+\end{itemize}
+Para projetos elétricos, onde a segurança depende de valores exatos e conformidade normativa, essas limitações inviabilizam o uso do LLM como única "calculadora".
+
+\section{Agentes e uso de ferramentas}
+\label{sec:ft_agentes}
+
+\subsection{Conceito de agente}
+
+Um agente é um sistema que utiliza um LLM como cérebro para raciocinar, mas possui a capacidade de \textbf{agir} sobre o ambiente. Ele recebe um objetivo, planeja passos e executa ações.
+
+\subsection{Ferramentas determinísticas para cálculos normativos}
+
+Para mitigar as limitações dos LLMs, o agente utiliza \textbf{ferramentas determinísticas} (código convencional) para executar cálculos.
+\begin{quote}
+\textit{LLM (Interpretação/Texto)} + \textit{Ferramenta (Cálculo/Norma)} = \textit{Projeto Confiável}.
+\end{quote}
+Isso garante que, para uma dada entrada, o dimensionamento (seções, disjuntores) siga rigorosamente a NBR 5410.
+
+\subsection{Validação e coerência}
+
+O sistema valida se os resultados das ferramentas fazem sentido técnico (ex.: disjuntor não pode ser maior que a ampacidade do cabo) e se estão coerentes com a descrição do usuário, garantindo um projeto seguro e auditável.
+
+\section{Recuperação Aumentada por Busca (RAG) aplicada a normas}
+\label{sec:ft_rag}
+
+\subsection{Justificativa para uso de RAG em normas}
+
+Normas técnicas são extensas e detalhadas. O uso de RAG permite que o agente consulte trechos específicos da norma durante o processo, fundamentando suas decisões em texto real em vez de confiar apenas na memória de treinamento do modelo.
+
+\subsection{Pipeline conceitual: indexação, recuperação e síntese}
+
+\begin{enumerate}
+    \item \textbf{Indexação:} Fragmentação das normas em trechos consultáveis;
+    \item \textbf{Recuperação:} Busca híbrida (semântica + palavras-chave) por trechos relevantes ao contexto atual;
+    \item \textbf{Síntese:} O agente usa a informação recuperada para tomar decisões ou explicar o memorial.
+\end{enumerate}
+
+\section{Síntese do capítulo}
+\label{sec:ft_sintese}
+
+Este capítulo estabeleceu a base para o desenvolvimento do sistema proposto. A amarração entre as \textbf{normas técnicas} (NBR 5410 e ET-124), que fornecem os critérios de engenharia, e a \textbf{arquitetura computacional} (Agentes, LLM e RAG), que provê a inteligência e flexibilidade, é o cerne da metodologia.
+A estratégia de separar o determinismo (cálculo) da fluidez (texto) é fundamental para garantir que o memorial de cálculo gerado seja, ao mesmo tempo, tecnicamente rigoroso e acessível ao usuário.
