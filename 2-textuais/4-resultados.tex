@@ -5,7 +5,7 @@ Este capítulo apresenta os resultados obtidos a partir da aplicação da metodo
 Os resultados obtidos foram avaliados por comparação com materiais de referência do contexto didático (respostas desenvolvidas manualmente, soluções típicas de discentes e gabarito), adotando-se como critério principal a reprodutibilidade das cargas mínimas por ambiente e a determinação do tipo de fornecimento. Adicionalmente, foram analisadas a coerência da divisão de circuitos e dos dimensionamentos correlatos (seções de condutores e disjuntores), reconhecendo-se que essas escolhas podem admitir variações decorrentes de critérios de projeto e premissas de instalação, desde que preservados os requisitos técnicos aplicáveis.
 
 \section{Estudos de caso e dados de entrada}
-A validação foi conduzida por meio de três exercícios extraídos de manuais e procedimentos de laboratório de disciplinas relacionadas a instalações elétricas, nos quais é proposto o desenvolvimento completo do projeto elétrico residencial a partir da planta e de requisitos mínimos. Os três estudos de caso são compostos por residências/apartamentos com distribuição típica de ambientes, possibilitando avaliar a metodologia em cenários de complexidade crescente.
+A validação foi conduzida por meio de três exercícios extraídos de manuais e procedimentos de laboratório de disciplinas relacionadas a instalações elétricas, nos quais é proposto o desenvolvimento completo do projeto elétrico residencial a partir da planta e de requisitos mínimos \cite{ApostilaUFC}. Os três estudos de caso são compostos por residências/apartamentos com distribuição típica de ambientes, possibilitando avaliar a metodologia em cenários de complexidade crescente.
 
 \subsection{Estudo de caso 1}
 O primeiro estudo de caso corresponde a uma residência composta por quatro dependências: cozinha, banheiro, sala e quarto. As dimensões de cada ambiente são apresentadas na Tabela \ref{tab:dimensoes_ambientes_ec1} 
@@ -98,7 +98,7 @@ Para garantir comparabilidade, foram adotadas premissas comuns aos três casos:
 
 	\item Tomadas de uso específico (TUE): não foram consideradas nos três exercícios, por se tratar de escopo alinhado ao manual de práticas; entretanto, o método prevê a inclusão desse tipo de carga quando necessário.
 
-	\item Condições de instalação para dimensionamento: método de referência B1 (condutores em eletroduto embutido), condutores de cobre com isolação em PVC e hipótese de agrupamento máximo de três circuitos como premissa padrão de projeto.
+	\item Condições de instalação para dimensionamento: método de referência B1 (condutores em eletroduto embutido), condutores de cobre com isolação em PVC e hipótese de agrupamento máximo de três circuitos como premissa padrão de projeto \cite{NBR5410:2004}.
 
 	\item Tipo de fornecimento: determinado a partir da potência instalada e das diretrizes da concessionária local, podendo resultar em alimentação monofásica, bifásica ou trifásica conforme o caso.
 \end{itemize}
@@ -273,7 +273,7 @@ Ressalta-se que não foram consideradas cargas de tomadas de uso específico (TU
 \end{table}
 
 \section{Divisão em circuitos terminais}
-A partir das cargas previstas na Seção 4.2, as cargas foram agrupadas e distribuídas em circuitos terminais. Em todos os casos, foi mantida a separação entre circuitos de iluminação e circuitos de tomadas. Adicionalmente, foram previstos circuitos reserva no quadro de distribuição, seguindo prática usual de projeto para acomodar ampliações futuras.
+A partir das cargas previstas na Seção 4.2, as cargas foram agrupadas e distribuídas em circuitos terminais. Em todos os casos, foi mantida a separação entre circuitos de iluminação e circuitos de tomadas. Adicionalmente, foram previstos circuitos reserva no quadro de distribuição, seguindo prática usual de projeto para acomodar ampliações futuras \cite{Creder2016}.
 
 \subsection{Estudo de caso 1}
 \begin{table}[h!]	
@@ -369,7 +369,7 @@ Em todos os estudos de caso, adotaram-se as seguintes premissas: tensão nominal
 
 $$ I_{B} \leq I_{N} \leq I_{Z}$$
 
-onde $I_B$ representa a corrente de projeto do circuito, $I_N$ a corrente nominal do dispositivo de proteção e $I_Z$ a capacidade de condução de corrente do condutor no método de instalação adotado.
+onde $I_B$ representa a corrente de projeto do circuito, $I_N$ a corrente nominal do dispositivo de proteção e $I_Z$ a capacidade de condução de corrente do condutor no método de instalação adotado \cite{Mamede2017}.
 
 \subsection{Estudo de caso 1}
 \begin{table}[h!]	
@@ -586,9 +586,9 @@ A Tabela \ref{tab:sintese_comparativa} apresenta uma visão consolidada dos prin
 A validação foi conduzida comparando os resultados obtidos com as soluções desenvolvidas manualmente e com o gabarito associado aos exercícios dos manuais de laboratório. Como critérios principais de validação, foram priorizados dois indicadores fundamentais:
 
 \begin{enumerate}
-	\item \textbf{Invariantes normativas:} as cargas mínimas por ambiente (iluminação e TUG) são determinadas por critérios normativos objetivos baseados em área, perímetro e classificação do ambiente. Portanto, para uma mesma planta de entrada, esses valores devem ser invariantes. Do mesmo modo, o tipo de fornecimento é uma função direta da potência instalada acumulada e das normas da concessionária local. A convergência total observada nesses itens (Tabela \ref{tab:validacao_sintese}) valida a precisão do motor de cálculo em relação às regras de projeto.
+	\item \textit{Invariantes normativas:} as cargas mínimas por ambiente (iluminação e TUG) são determinadas por critérios normativos objetivos baseados em área, perímetro e classificação do ambiente. Portanto, para uma mesma planta de entrada, esses valores devem ser invariantes. Do mesmo modo, o tipo de fornecimento é uma função direta da potência instalada acumulada e das normas da concessionária local. A convergência total observada nesses itens (Tabela \ref{tab:validacao_sintese}) valida a precisão do motor de cálculo em relação às regras de projeto.
 	
-	\item \textbf{Coerência elétrica do dimensionamento:} a integridade técnica da solução foi verificada pela manutenção da condição de coordenação $I_{B} \leq I_{N} \leq I_{Z}$ em todos os circuitos. Observou-se que, para o conjunto de cargas e premissas adotadas, não houve necessidade de redimensionamento de condutores por critério de proteção (coluna "Redimensionado" nas tabelas de disjuntores), indicando que a seleção inicial baseada na capacidade de condução foi suficiente e consistente com as proteções de mercado selecionadas. Ressalta-se que, mesmo em circuitos com correntes muito reduzidas (como o C02 do Estudo de caso 3, com apenas 0,5~A), a seção dos condutores foi mantida em conformidade com os requisitos de seção mínima normativa para circuitos de força e por critérios de padronização de projeto.
+	\item \textit{Coerência elétrica do dimensionamento:} a integridade técnica da solução foi verificada pela manutenção da condição de coordenação $I_{B} \leq I_{N} \leq I_{Z}$ em todos os circuitos. Observou-se que, para o conjunto de cargas e premissas adotadas, não houve necessidade de redimensionamento de condutores por critério de proteção (coluna "Redimensionado" nas tabelas de disjuntores), indicando que a seleção inicial baseada na capacidade de condução foi suficiente e consistente com as proteções de mercado selecionadas. Ressalta-se que, mesmo em circuitos com correntes muito reduzidas (como o C02 do Estudo de caso 3, com apenas 0,5~A), a seção dos condutores foi mantida em conformidade com os requisitos de seção mínima normativa para circuitos de força e por critérios de padronização de projeto.
 \end{enumerate}
 
 Em todos os três estudos de caso, observou-se concordância integral entre as cargas mínimas por ambiente calculadas e as referências (gabarito e soluções manuais). Do mesmo modo, o tipo de fornecimento identificado foi equivalente ao esperado no material de referência para o conjunto de premissas adotadas.

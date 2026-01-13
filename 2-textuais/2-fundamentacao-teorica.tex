@@ -7,8 +7,8 @@ elétricas residenciais de baixa tensão, com ênfase no papel do \textit{memori
 documento técnico de consolidação do raciocínio de projeto. Em seguida, são apresentados os
 fundamentos normativos empregados no levantamento de cargas mínimas, na divisão em circuitos
 terminais e nos critérios de dimensionamento de condutores e dispositivos de proteção, tomando
-como base a ABNT NBR 5410 \cite{NBR5410} e as diretrizes da concessionária consideradas no
-estudo \cite{ET124_ENEL}.
+como base a ABNT NBR 5410 \cite{NBR5410:2004} e as diretrizes da concessionária consideradas no
+estudo \cite{ET124:ENEL}.
 
 Além da fundamentação normativa, este capítulo também introduz os conceitos computacionais
 que viabilizam a automatização parcial do processo de elaboração do memorial de cálculo,
@@ -32,7 +32,7 @@ destinados a atender, com segurança e funcionalidade, as demandas de energia el
 unidade habitacional. Em termos de projeto, busca-se garantir o suprimento adequado das
 cargas previstas, assegurando simultaneamente requisitos fundamentais como proteção contra
 sobrecorrentes, limitação de efeitos térmicos, organização e manutenção, conforme práticas
-normativas e de engenharia adotadas no contexto nacional.
+normativas e de engenharia adotadas no contexto nacional \cite{Creder2016}.
 
 No processo tradicional de elaboração de um projeto elétrico residencial, parte-se de um
 levantamento de cargas, que pode ser baseado em prescrições mínimas normativas e/ou em
@@ -49,38 +49,38 @@ os principais elementos do raciocínio de projeto. Em geral, ele registra:
 circuitos; (iv) dimensionamento de condutores; (v) dimensionamento e seleção de dispositivos
 de proteção; e (vi) sínteses e tabelas finais que facilitem a verificação e o uso posterior do documento.
 Neste trabalho, o memorial de cálculo é o principal artefato de saída do sistema proposto e,
-na versão atual, é gerado automaticamente em formato de documento \textbf{Microsoft Word}.
+na versão atual, é gerado automaticamente em formato de documento Microsoft Word.
 
 A utilidade do memorial de cálculo é múltipla. Do ponto de vista técnico, ele fornece
-\textit{rastreabilidade}: permite que um terceiro compreenda quais regras, premissas e verificações
+rastreabilidade: permite que um terceiro compreenda quais regras, premissas e verificações
 levaram aos valores e escolhas apresentados. Do ponto de vista de validação, o memorial facilita
 a checagem de coerência entre carga prevista, circuitos definidos, seções de condutores e proteções
-especificadas, reduzindo ambiguidades e erros de comunicação. Em cenários acadêmicos e
-profissionais, esse tipo de registro também tem valor por tornar o projeto \textit{auditável}, isto é,
+especificadas, reduzindo ambiguidades e erros de comunicação \cite{Mamede2017}. Em cenários acadêmicos e
+profissionais, esse tipo de registro também tem valor por tornar o projeto auditável, isto é,
 verificável a partir de critérios explicitados.
 
 \section{Norma ABNT NBR 5410: previsão de cargas mínimas}
 \label{sec:ft_nbr5410_cargas_minimas}
 
-Uma etapa essencial do projeto elétrico residencial é a \textbf{previsão de cargas mínimas}
+Uma etapa essencial do projeto elétrico residencial é a previsão de cargas mínimas
 associadas a \textit{iluminação} e \textit{tomadas de uso geral}. Na ausência de um levantamento
 completo baseado em equipamentos efetivamente definidos, a ABNT NBR 5410 estabelece
-\textbf{critérios prescritivos mínimos} que permitem estimar a carga instalada de forma
-padronizada e consistente \cite{NBR5410}.
+critérios prescritivos mínimos que permitem estimar a carga instalada de forma
+padronizada e consistente \cite{NBR5410:2004}.
 
-De modo geral, a norma utiliza valores em \textbf{VA} para essas previsões mínimas, pois se trata
+De modo geral, a norma utiliza valores em VA para essas previsões mínimas, pois se trata
 de uma estimativa de potência aparente associada a pontos de utilização típicos.
 
 \subsection{Iluminação (regras por área)}
 \label{subsec:ft_nbr5410_iluminacao}
 
 Para circuitos de iluminação, a ABNT NBR 5410 define uma carga mínima por cômodo ou
-dependência em função de sua área \cite{NBR5410}. Em termos práticos:
+dependência em função de sua área \cite{NBR5410:2004}. Em termos práticos:
 
 \begin{itemize}
-  \item \textbf{Ambientes com área $A \leq 6\ \text{m}^2$:} deve ser prevista \textbf{carga mínima de 100 VA}.
-  \item \textbf{Ambientes com área $A > 6\ \text{m}^2$:} deve ser prevista \textbf{carga mínima de 100 VA}
-  para os primeiros $6\ \text{m}^2$, acrescida de \textbf{60 VA} para cada \textbf{acréscimo de $4\ \text{m}^2$}
+  \item Ambientes com área $A \leq 6\ \text{m}^2$: deve ser prevista carga mínima de 100 VA.
+  \item Ambientes com área $A > 6\ \text{m}^2$: deve ser prevista carga mínima de 100 VA
+  para os primeiros $6\ \text{m}^2$, acrescida de 60 VA para cada acréscimo de $4\ \text{m}^2$
   inteiros além dos $6\ \text{m}^2$.
 \end{itemize}
 
@@ -90,56 +90,56 @@ onde $\lfloor \cdot \rfloor$ denota a parte inteira (isto é, considera-se apena
 de $4\ \text{m}^2$).
 
 Além da potência mínima, a norma também estabelece a necessidade de previsão de pelo menos
-\textbf{um ponto de luz fixo no teto} por cômodo ou dependência.
+um ponto de luz fixo no teto por cômodo ou dependência.
 
 \subsection{Tomadas de uso geral (TUG)}
 \label{subsec:ft_nbr5410_tug}
 
 Para tomadas de uso geral, a ABNT NBR 5410 prescreve quantidades mínimas de pontos e
-potências mínimas a serem atribuídas, variando conforme o tipo de ambiente \cite{NBR5410}.
+potências mínimas a serem atribuídas, variando conforme o tipo de ambiente \cite{NBR5410:2004}.
 
 \subsubsection{Banheiros}
-Deve ser previsto \textbf{no mínimo um ponto de tomada} próximo ao lavatório. Para efeito de previsão, adota-se \textbf{600 VA por tomada}.
+Deve ser previsto no mínimo um ponto de tomada próximo ao lavatório. Para efeito de previsão, adota-se 600 VA por tomada.
 
 \subsubsection{Cozinhas, copas, áreas de serviço e locais semelhantes}
-Deve ser previsto \textbf{no mínimo um ponto de tomada para cada $3{,}5$ m, ou fração, de perímetro}.
+Deve ser previsto no mínimo um ponto de tomada para cada $3{,}5$ m, ou fração, de perímetro.
 Para atribuição de potência:
 \begin{itemize}
-  \item \textbf{600 VA} por ponto, \textbf{até três pontos};
-  \item \textbf{100 VA} por ponto, para os \textbf{excedentes}.
+  \item 600 VA por ponto, até três pontos;
+  \item 100 VA por ponto, para os excedentes.
 \end{itemize}
 
 \subsubsection{Salas e dormitórios}
-Deve ser previsto \textbf{pelo menos um ponto de tomada para cada $5$ m, ou fração, de perímetro}.
-Para previsão, adota-se \textbf{100 VA por tomada}.
+Deve ser previsto pelo menos um ponto de tomada para cada $5$ m, ou fração, de perímetro.
+Para previsão, adota-se 100 VA por tomada.
 
 \subsubsection{Demais cômodos e dependências}
 Para outros ambientes:
 \begin{itemize}
-  \item Área $\le 6\ \text{m}^2$: \textbf{ao menos um ponto};
-  \item Área $> 6\ \text{m}^2$: \textbf{um ponto a cada $5$ m, ou fração, de perímetro}.
+  \item Área $\le 6\ \text{m}^2$: ao menos um ponto;
+  \item Área $> 6\ \text{m}^2$: um ponto a cada $5$ m, ou fração, de perímetro.
 \end{itemize}
-Em ambos os casos, atribui-se \textbf{100 VA por tomada}.
+Em ambos os casos, atribui-se 100 VA por tomada.
 
 \subsection{TUE e circuitos dedicados}
 \label{subsec:ft_nbr5410_tue}
 
 Além das TUG, a ABNT NBR 5410 estabelece que pontos destinados a alimentar, de modo
-exclusivo ou virtualmente dedicado, equipamentos com \textbf{corrente nominal superior a 10 A}
-devem constituir \textbf{circuito independente} \cite{NBR5410}. Isso caracteriza as \textbf{tomadas de uso específico (TUE)}.
+exclusivo ou virtualmente dedicado, equipamentos com corrente nominal superior a 10 A
+devem constituir circuito independente \cite{NBR5410:2004}. Isso caracteriza as tomadas de uso específico (TUE).
 
-Essa prescrição reduz interferências e evita sobrecarga de circuitos de uso geral. Além disso, mesmo para equipamentos com corrente inferior a 10 A, pode ser recomendável (a critério do projetista) a adoção de circuitos exclusivos quando houver características específicas (motores, cargas sensíveis, uso contínuo), demonstrando que existe um espaço de \textbf{critério de projetista} para decidir quando a segregação é desejável.
+Essa prescrição reduz interferências e evita sobrecarga de circuitos de uso geral. Além disso, mesmo para equipamentos com corrente inferior a 10 A, pode ser recomendável (a critério do projetista) a adoção de circuitos exclusivos quando houver características específicas (motores, cargas sensíveis, uso contínuo), demonstrando que existe um espaço de critério de projetista para decidir quando a segregação é desejável.
 
 \section{Divisão em circuitos terminais (NBR 5410 + boas práticas)}
 \label{sec:ft_divisao_circuitos}
 
-Após a previsão das cargas, a instalação deve ser \textbf{dividida em circuitos terminais}.
+Após a previsão das cargas, a instalação deve ser dividida em circuitos terminais.
 A ABNT NBR 5410 estabelece essa divisão como requisito para segurança, manutenção e redução de interferências.
 
 \subsection{Separação entre iluminação e TUG}
 \label{subsec:ft_sep_ilum_tomadas}
 
-Como diretriz geral e boa prática amplamente aceita, recomenda-se manter \textbf{circuitos de iluminação separados dos circuitos de tomadas}, evitando que falhas em cargas de tomadas provoquem desligamentos de iluminação.
+Como diretriz geral e boa prática amplamente aceita, recomenda-se manter circuitos de iluminação separados dos circuitos de tomadas, evitando que falhas em cargas de tomadas provoquem desligamentos de iluminação \cite{Creder2016}.
 Essa segregação facilita também a manutenção e o diagnóstico de falhas.
 
 \subsection{Exclusividade para cozinha, área de serviço e TUE}
@@ -147,39 +147,38 @@ Essa segregação facilita também a manutenção e o diagnóstico de falhas.
 
 A norma estabelece situações em que circuitos exclusivos são necessários:
 \begin{itemize}
-  \item \textbf{TUE (Corrente > 10 A):} Devem constituir circuitos independentes.
-  \item \textbf{Cozinhas, áreas de serviço e afins:} Os pontos de tomada desses ambientes devem ser atendidos por \textbf{circuitos exclusivamente destinados}
-a eles \cite{NBR5410}.
+  \item \textit{TUE (Corrente > 10 A):} Devem constituir circuitos independentes.
+  \item \textit{Cozinhas, áreas de serviço e afins:} Os pontos de tomada desses ambientes devem ser atendidos por circuitos exclusivamente destinados a eles \cite{NBR5410:2004}.
 \end{itemize}
 
 \subsection{Limites típicos por circuito (boas práticas)}
 \label{subsec:ft_limites_potencia}
 
-Embora a norma defina requisitos mínimos, é prática comum adotar limites de potência para evitar correntes elevadas em circuitos de uso geral e facilitar a proteção. No contexto deste trabalho, consideram-se como \textbf{boas práticas}:
+Embora a norma defina requisitos mínimos, é prática comum adotar limites de potência para evitar correntes elevadas em circuitos de uso geral e facilitar a proteção. No contexto deste trabalho, consideram-se como boas práticas:
 
 \begin{itemize}
-  \item \textbf{Iluminação:} Limitar a potência para evitar desligamento de grandes áreas em caso de falha. Em 220 V, valores da ordem de 2500 VA são usuais.
-  \item \textbf{TUG:} Limitar a potência total para manter correntes compatíveis com disjuntores de uso geral (ex.: 16 A ou 20 A). Em 220 V, limites da ordem de 4300 VA são referências comuns de projeto.
+  \item \textit{Iluminação:} Limitar a potência para evitar desligamento de grandes áreas em caso de falha. Em 220 V, valores da ordem de 2500 VA são usuais.
+  \item \textit{TUG:} Limitar a potência total para manter correntes compatíveis com disjuntores de uso geral (ex.: 16 A ou 20 A). Em 220 V, limites da ordem de 4300 VA são referências comuns de projeto.
 \end{itemize}
 
 \subsection{Circuitos de reserva}
 \label{subsec:ft_circuitos_reserva}
 
-A ABNT NBR 5410 estabelece que os quadros de distribuição devem prever \textbf{capacidade de reserva} (espaço físico) para ampliações futuras \cite{NBR5410}.
-Na prática de projeto, isso se materializa prevendo \textbf{circuitos reserva} no quadro, dimensionados e deixados vagos para uso futuro. A quantidade de reservas depende do número de circuitos efetivos (ex.: para quadros com até 6 circuitos, prever no mínimo 2 reservas).
+A ABNT NBR 5410 estabelece que os quadros de distribuição devem prever capacidade de reserva (espaço físico) para ampliações futuras \cite{NBR5410:2004}.
+Na prática de projeto, isso se materializa prevendo circuitos reserva no quadro, dimensionados e deixados vagos para uso futuro. A quantidade de reservas depende do número de circuitos efetivos (ex.: para quadros com até 6 circuitos, prever no mínimo 2 reservas).
 
 \section{Dimensionamento de condutores e proteções (NBR 5410)}
 \label{sec:ft_dimensionamento_condutores}
 
-Uma vez definidos os circuitos, procede-se ao \textbf{dimensionamento dos condutores} e à \textbf{seleção dos dispositivos de proteção}.
+Uma vez definidos os circuitos, procede-se ao dimensionamento dos condutores e à seleção dos dispositivos de proteção.
 
 \subsection{Corrente de projeto, ampacidade e seção mínima}
 \label{subsec:ft_corrente_ampacidade}
 
 \paragraph{Corrente de projeto ($I_B$):} Calculada a partir da potência do circuito e da tensão ($I_B = S/V$).\paragraph{Ampacidade ($I_Z$):} A capacidade de condução de corrente do condutor depende do método de instalação, material, isolação e agrupamento. A seção deve ser tal que $I_Z \ge I_B$ (considerando fatores de correção).\paragraph{Seção mínima:} A norma impõe seções mínimas por razões mecânicas, independentemente da corrente calculada:
 \begin{itemize}
-  \item \textbf{$1{,}5~\mathrm{mm}^2$} para iluminação;
-  \item \textbf{$2{,}5~\mathrm{mm}^2$} para circuitos de força (tomadas).
+  \item $1{,}5~\mathrm{mm}^2$ para iluminação;
+  \item $2{,}5~\mathrm{mm}^2$ para circuitos de força (tomadas).
 \end{itemize}
 
 \subsection{Critério de coordenação: $I_B \le I_N \le I_Z$}
@@ -187,7 +186,7 @@ Uma vez definidos os circuitos, procede-se ao \textbf{dimensionamento dos condut
 
 Para proteção contra sobrecarga, deve-se atender à relação fundamental de coordenação:
 $$ I_B \le I_N \le I_Z $$
-onde $I_B$ é a corrente de projeto, $I_N$ é a corrente nominal do disjuntor e $I_Z$ é a capacidade de condução do condutor nas condições instaladas. Isso garante que o disjuntor não dispare em operação normal ($I_B \le I_N$) e que proteja o cabo antes que este sobreaqueça ($I_N \le I_Z$).
+onde $I_B$ é a corrente de projeto, $I_N$ é a corrente nominal do disjuntor e $I_Z$ é a capacidade de condução do condutor nas condições instaladas. Isso garante que o disjuntor não dispare em operação normal ($I_B \le I_N$) e que proteja o cabo antes que este sobreaqueça ($I_N \le I_Z$) \cite{Mamede2017}.
 
 \subsection{Condutores de Proteção (PE) e Neutro}
 \label{subsec:ft_pe_neutro}
@@ -200,20 +199,20 @@ onde $I_B$ é a corrente de projeto, $I_N$ é a corrente nominal do disjuntor e 
 Para viabilizar a automatização determinística neste trabalho, são adotadas hipóteses de projeto usuais para residências de padrão popular/médio na região do estudo:
 \begin{itemize}
     \item Tensão de fase-neutro/fase-fase conforme concessionária (ex.: 220 V);
-    \item Método de instalação \textbf{B1} (condutores em eletroduto embutido em alvenaria);
-    \item Condutores de \textbf{Cobre} com isolação \textbf{PVC} ($70^{\circ}$C);
-    \item Consideração típica de \textbf{3 condutores carregados} em agrupamentos iniciais (F+N ou F+F, agrupados), ajustável conforme o caso.
+    \item Método de instalação B1 (condutores em eletroduto embutido em alvenaria);
+    \item Condutores de Cobre com isolação PVC ($70^{\circ}$C);
+    \item Consideração típica de 3 condutores carregados em agrupamentos iniciais (F+N ou F+F, agrupados), ajustável conforme o caso.
 \end{itemize}
 
 \section{Tipo de fornecimento e diretrizes da concessionária (ET-124 / ENEL Ceará)}
 \label{sec:ft_tipo_fornecimento}
 
-Além da NBR 5410, o projeto deve respeitar as normas da concessionária local (ET-124 da ENEL Ceará) \cite{ET124}.
+Além da NBR 5410, o projeto deve respeitar as normas da concessionária local (ET-124 da ENEL Ceará) \cite{ET124:ENEL}.
 
 \subsection{Enquadramento do fornecimento pela potência instalada}
 \label{subsec:ft_enquadramento}
 
-A ET-124 define se o fornecimento será \textbf{monofásico, bifásico ou trifásico} com base na \textbf{potência instalada total} da unidade consumidora.
+A ET-124 define se o fornecimento será monofásico, bifásico ou trifásico com base na potência instalada total da unidade consumidora.
 A potência instalada é a soma das potências atribuídas a todas as cargas (iluminação, TUG e TUE). Faixas de potência (ex.: até 15 kW, até 25 kW) determinam o tipo de atendimento.
 
 \subsection{Impactos do tipo de fornecimento no projeto}
@@ -223,7 +222,7 @@ O tipo de fornecimento afeta:
 \begin{enumerate}
     \item A arquitetura do quadro (monofásico vs. trifásico);
     \item O padrão de entrada e medição;
-    \item A necessidade de \textbf{balanceamento de fases} na distribuição dos circuitos, visando equilibrar as cargas entre as fases disponíveis.
+    \item A necessidade de balanceamento de fases na distribuição dos circuitos, visando equilibrar as cargas entre as fases disponíveis.
 \end{enumerate}
 
 \section{IA: Modelos de Linguagem (LLM)}
@@ -231,15 +230,15 @@ O tipo de fornecimento afeta:
 
 \subsection{Conceito, capacidades e limitações}
 
-Modelos de Linguagem de Grande Escala (LLMs) são sistemas treinados para prever e gerar texto de forma coerente. Eles são capazes de interpretar linguagem natural, resumir informações e estruturar dados. Contudo, operam de forma probabilística.
+Modelos de Linguagem de Grande Escala (LLMs) são sistemas treinados para prever e gerar texto de forma coerente \cite{Vaswani2017}. Eles são capazes de interpretar linguagem natural, resumir informações e estruturar dados. Contudo, operam de forma probabilística.
 
 \subsection{Por que LLM sozinho não serve para cálculo normativo}
 
 O uso isolado de LLMs para engenharia apresenta riscos:
 \begin{itemize}
-    \item \textbf{Alucinações:} Geração de informações incorretas com alta confiança;
-    \item \textbf{Inconsistência:} Falta de repetibilidade nos cálculos;
-    \item \textbf{Dificuldade matemática:} Erros em operações aritméticas complexas.
+    \item \textit{Alucinações:} Geração de informações incorretas com alta confiança \cite{Ji2023};
+    \item \textit{Inconsistência:} Falta de repetibilidade nos cálculos;
+    \item \textit{Dificuldade matemática:} Erros em operações aritméticas complexas.
 \end{itemize}
 Para projetos elétricos, onde a segurança depende de valores exatos e conformidade normativa, essas limitações inviabilizam o uso do LLM como única "calculadora".
 
@@ -248,11 +247,11 @@ Para projetos elétricos, onde a segurança depende de valores exatos e conformi
 
 \subsection{Conceito de agente}
 
-Um agente é um sistema que utiliza um LLM como cérebro para raciocinar, mas possui a capacidade de \textbf{agir} sobre o ambiente. Ele recebe um objetivo, planeja passos e executa ações.
+Um agente é um sistema que utiliza um LLM como cérebro para raciocinar, mas possui a capacidade de agir sobre o ambiente \cite{Yao2023}. Ele recebe um objetivo, planeja passos e executa ações.
 
 \subsection{Ferramentas determinísticas para cálculos normativos}
 
-Para mitigar as limitações dos LLMs, o agente utiliza \textbf{ferramentas determinísticas} (código convencional) para executar cálculos.
+Para mitigar as limitações dos LLMs, o agente utiliza ferramentas determinísticas (código convencional) para executar cálculos.
 \begin{quote}
 \textit{LLM (Interpretação/Texto)} + \textit{Ferramenta (Cálculo/Norma)} = \textit{Projeto Confiável}.
 \end{quote}
@@ -272,13 +271,13 @@ Normas técnicas são extensas e detalhadas. O uso de RAG permite que o agente c
 \subsection{Pipeline conceitual: indexação, recuperação e síntese}
 
 \begin{enumerate}
-    \item \textbf{Indexação:} Fragmentação das normas em trechos consultáveis;
-    \item \textbf{Recuperação:} Busca híbrida (semântica + palavras-chave) por trechos relevantes ao contexto atual;
-    \item \textbf{Síntese:} O agente usa a informação recuperada para tomar decisões ou explicar o memorial.
+    \item \textit{Indexação:} Fragmentação das normas em trechos consultáveis;
+    \item \textit{Recuperação:} Busca híbrida (semântica + palavras-chave) por trechos relevantes ao contexto atual;
+    \item \textit{Síntese:} O agente usa a informação recuperada para tomar decisões ou explicar o memorial.
 \end{enumerate}
 
 \section{Síntese do capítulo}
 \label{sec:ft_sintese}
 
-Este capítulo estabeleceu a base para o desenvolvimento do sistema proposto. A amarração entre as \textbf{normas técnicas} (NBR 5410 e ET-124), que fornecem os critérios de engenharia, e a \textbf{arquitetura computacional} (Agentes, LLM e RAG), que provê a inteligência e flexibilidade, é o cerne da metodologia.
+Este capítulo estabeleceu a base para o desenvolvimento do sistema proposto. A amarração entre as normas técnicas (NBR 5410 e ET-124), que fornecem os critérios de engenharia, e a arquitetura computacional (Agentes, LLM e RAG), que provê a inteligência e flexibilidade, é o cerne da metodologia.
 A estratégia de separar o determinismo (cálculo) da fluidez (texto) é fundamental para garantir que o memorial de cálculo gerado seja, ao mesmo tempo, tecnicamente rigoroso e acessível ao usuário.

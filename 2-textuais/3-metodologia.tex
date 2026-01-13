@@ -98,7 +98,7 @@ Com o escopo consolidado e o modelo do imóvel estruturado, o método avança pa
 
 A estratégia adotada combina dois elementos complementares:
 (i) rotinas determinísticas de dimensionamento, que formalizam regras normativas em procedimentos reprodutíveis; e
-(ii) um mecanismo de consulta e fundamentação normativa, utilizado para justificar escolhas e responder dúvidas do usuário sobre o porquê de determinadas decisões.
+(ii) um mecanismo de consulta e fundamentação normativa \cite{Lewis2020}, utilizado para justificar escolhas e responder dúvidas do usuário sobre o porquê de determinadas decisões.
 
 Essa abordagem é relevante porque o dimensionamento elétrico possui partes estritamente normativas e calculáveis, que demandam consistência e repetibilidade, e também possui pontos em que o usuário necessita de esclarecimento técnico sobre critérios adotados e boas práticas.
 
@@ -112,13 +112,13 @@ Quando houver necessidade de esclarecer decisões (por exemplo, justificar a sep
 O dimensionamento é estruturado em etapas sequenciais, refletindo o fluxo de projeto e reduzindo dependências circulares. De forma geral, o pipeline é organizado como:
 
 \begin{enumerate}
-    \item \textbf{Cálculo das cargas por ambiente:} determinação das cargas mínimas de iluminação e das cargas de tomadas de uso geral (TUG) por ambiente, conforme regras normativas para cada tipo de cômodo.
-    \item \textbf{Incorporação de cargas específicas (TUE):} registro de cargas informadas pelo usuário que devem receber tratamento dedicado no projeto.
-    \item \textbf{Divisão em circuitos terminais:} organização da instalação em circuitos de iluminação e circuitos de tomadas, com separação funcional e aplicação de critérios normativos e boas práticas para limitação de potência por circuito, quando necessário.
-    \item \textbf{Dimensionamento de condutores:} seleção da seção dos condutores por circuito, considerando como critério principal a capacidade de condução de corrente, dadas as premissas adotadas (material do condutor, tipo de isolação, método de instalação e condições de referência).
-    \item \textbf{Dimensionamento dos dispositivos de proteção:} escolha dos dispositivos de proteção compatíveis com os circuitos dimensionados, preservando coerência técnica entre proteção e condutores.
-    \item \textbf{Balanceamento de fases (quando aplicável):} distribuição dos circuitos entre fases buscando equilíbrio de potência por fase, conforme boas práticas e diretrizes aplicáveis.
-    \item \textbf{Verificação de conformidade e ajustes:} checagem do atendimento às regras adotadas, com retorno às etapas anteriores quando necessário.
+    \item \textit{Cálculo das cargas por ambiente:} determinação das cargas mínimas de iluminação e das cargas de tomadas de uso geral (TUG) por ambiente, conforme regras normativas para cada tipo de cômodo.
+    \item \textit{Incorporação de cargas específicas (TUE):} registro de cargas informadas pelo usuário que devem receber tratamento dedicado no projeto.
+    \item \textit{Divisão em circuitos terminais:} organização da instalação em circuitos de iluminação e circuitos de tomadas, com separação funcional e aplicação de critérios normativos e boas práticas para limitação de potência por circuito, quando necessário.
+    \item \textit{Dimensionamento de condutores:} seleção da seção dos condutores por circuito, considerando como critério principal a capacidade de condução de corrente, dadas as premissas adotadas (material do condutor, tipo de isolação, método de instalação e condições de referência).
+    \item \textit{Dimensionamento dos dispositivos de proteção:} escolha dos dispositivos de proteção compatíveis com os circuitos dimensionados, preservando coerência técnica entre proteção e condutores.
+    \item \textit{Balanceamento de fases (quando aplicável):} distribuição dos circuitos entre fases buscando equilíbrio de potência por fase, conforme boas práticas e diretrizes aplicáveis.
+    \item \textit{Verificação de conformidade e ajustes:} checagem do atendimento às regras adotadas, com retorno às etapas anteriores quando necessário.
 \end{enumerate}
 
 Cada uma dessas etapas produz saídas intermediárias que são armazenadas de forma estruturada, permitindo rastreabilidade e facilitando a geração do memorial de cálculo ao final do processo.
@@ -133,16 +133,16 @@ Critérios adicionais, como verificação de queda de tensão, curto-circuito e 
 O dimensionamento do projeto elétrico residencial proposto neste trabalho é conduzido por um pipeline sequencial, fundamentado na previsão de cargas mínimas e na organização em circuitos terminais, conforme critérios normativos e boas práticas usuais. O levantamento das potências é realizado por meio de uma previsão das cargas mínimas de iluminação e tomadas, permitindo determinar a potência total prevista da instalação. Essa previsão segue o que estabelece o item 9.5.2 da ABNT NBR 5410 \cite{NBR5410:2004}, que orienta o procedimento de estimativa das cargas a serem instaladas.
 
 \subsection{Previsão de carga de iluminação}
-A carga mínima de iluminação por cômodo/dependência é estimada em função da área do ambiente, conforme o \textbf{item 9.5.2} da ABNT NBR 5410 \cite{NBR5410:2004}. Para fins de aplicação metodológica, adota-se:
+A carga mínima de iluminação por cômodo/dependência é estimada em função da área do ambiente, conforme o \textit{item 9.5.2} da ABNT NBR 5410 \cite{NBR5410:2004}. Para fins de aplicação metodológica, adota-se:
 
 \begin{itemize}
-    \item Para ambientes com \textbf{área $\le$ 6 m$^2$}: prever 100 VA de carga mínima de iluminação.
-    \item Para ambientes com \textbf{área $>$ 6 m$^2$}: prever 100 VA para os primeiros 6 m$^2$ \textbf{acrescida de 60 VA a cada aumento de 4 m$^2$ inteiros}.
+    \item Para ambientes com área $\le$ 6 m$^2$: prever 100 VA de carga mínima de iluminação.
+    \item Para ambientes com área $>$ 6 m$^2$: prever 100 VA para os primeiros 6 m$^2$ acrescida de 60 VA a cada aumento de 4 m$^2$ inteiros.
 \end{itemize}
 
 Essa regra permite que a carga mínima de iluminação seja calculada de forma reprodutível a partir das dimensões do cômodo, gerando como saída: (i) potência de iluminação por ambiente e (ii) potência total de iluminação da residência.
 
-\textbf{Observação normativa:} além da potência, a norma estabelece que, para cada cômodo ou dependência, deve ser previsto \textbf{pelo menos um ponto de luz fixo no teto}, comandado por interruptor, conforme o \textbf{subitem 9.5.2.1.1} da ABNT NBR 5410 \cite{NBR5410:2004}.
+\textit{Observação normativa:} além da potência, a norma estabelece que, para cada cômodo ou dependência, deve ser previsto pelo menos um ponto de luz fixo no teto, comandado por interruptor, conforme o \textit{subitem 9.5.2.1.1} da ABNT NBR 5410 \cite{NBR5410:2004}.
 
 \subsection{Precisão de tomadas de uso geral}
 A previsão de TUG é realizada conforme o item 9.5.2 da ABNT NBR 5410 \cite{NBR5410:2004}, diferenciando-se por tipo de ambiente. Além disso, no caso de banheiros e demais situações com restrições, deve-se respeitar as condições de instalação indicadas no item 9.1 (restrições/zonas aplicáveis ao ambiente).
@@ -150,11 +150,11 @@ A previsão de TUG é realizada conforme o item 9.5.2 da ABNT NBR 5410 \cite{NBR
 De forma resumida, a metodologia aplica:
 
 \begin{itemize}
-    \item \textbf{Banheiros:} prever pelo menos \textbf{1 tomada} próxima ao lavatório, respeitando as restrições do \textbf{item 9.1}; atribuir \textbf{600 VA por tomada} (mínimo).
-    \item \textbf{Cozinhas, copas, copas-cozinhas, áreas de serviço, lavanderias e locais semelhantes:} prever no mínimo \textbf{1 tomada a cada 3,5 m de perímetro} (ou fração); atribuir \textbf{600 VA por ponto para até 3 pontos} e \textbf{100 VA por ponto excedente}, considerando cada ambiente separadamente.
-    \item \textbf{Varandas:} prever pelo menos \textbf{1 tomada} (admitindo-se posição próxima ao acesso em situações construtivas específicas); atribuir \textbf{100 VA por tomada}.
-    \item \textbf{Salas e dormitórios:} prever no mínimo \textbf{1 tomada a cada 5 m de perímetro} (ou fração); atribuir \textbf{100 VA por tomada}.
-    \item \textbf{Demais cômodos/dependências:} se área $\le$ 6 m$^2$, prever ao menos 1 tomada; se área $>$ 6 m$^2$, prever \textbf{1 tomada a cada 5 m de perímetro} (ou fração); atribuir \textbf{100 VA por tomada}.
+    \item \textit{Banheiros:} prever pelo menos 1 tomada próxima ao lavatório, respeitando as restrições do item 9.1; atribuir 600 VA por tomada (mínimo).
+    \item \textit{Cozinhas, copas, copas-cozinhas, áreas de serviço, lavanderias e locais semelhantes:} prever no mínimo 1 tomada a cada 3,5 m de perímetro (ou fração); atribuir 600 VA por ponto para até 3 pontos e 100 VA por ponto excedente, considerando cada ambiente separadamente.
+    \item \textit{Varandas:} prever pelo menos 1 tomada (admitindo-se posição próxima ao acesso em situações construtivas específicas); atribuir 100 VA por tomada.
+    \item \textit{Salas e dormitórios:} prever no mínimo 1 tomada a cada 5 m de perímetro (ou fração); atribuir 100 VA por tomada.
+    \item \textit{Demais cômodos/dependências:} se área $\le$ 6 m$^2$, prever ao menos 1 tomada; se área $>$ 6 m$^2$, prever 1 tomada a cada 5 m de perímetro (ou fração); atribuir 100 VA por tomada.
 \end{itemize}
 
 Como saída dessa etapa, o método obtém a quantidade mínima de TUG por ambiente, a potência atribuída por ambiente e o total de TUG da instalação.
@@ -186,14 +186,14 @@ Como saída dessa etapa, o método obtém a quantidade mínima de TUG por ambien
 Com base nas regras de previsão de carga mínima de iluminação (item 9.5.2) e nas regras de TUG sintetizadas na Tabela \ref{tab:regras_tug} obtém-se a carga prevista de TUG por ambiente e a carga total de TUG da instalação, as quais são utilizadas nas etapas posteriores de divisão em circuitos terminais e dimensionamento.
 
 \subsection{Tomadas de uso específico - TUE e circuitos dedicados}
-As cargas específicas (TUE) são incorporadas ao modelo do projeto a partir das informações fornecidas pelo usuário (ex.: condicionador de ar, chuveiro elétrico, máquina de lavar). Conforme o \textbf{subitem 9.5.3.1} da ABNT NBR 5410 \cite{NBR5410:2004}, todo ponto de utilização previsto para alimentar equipamento de modo exclusivo ou virtualmente dedicado, com corrente nominal superior a 10 A, deve constituir um circuito independente.
+As cargas específicas (TUE) são incorporadas ao modelo do projeto a partir das informações fornecidas pelo usuário (ex.: condicionador de ar, chuveiro elétrico, máquina de lavar). Conforme o \textit{subitem 9.5.3.1} da ABNT NBR 5410 \cite{NBR5410:2004}, todo ponto de utilização previsto para alimentar equipamento de modo exclusivo ou virtualmente dedicado, com corrente nominal superior a 10 A, deve constituir um circuito independente.
 
 Na prática metodológica, isso implica:
 
 \begin{itemize}
-    \item \textbf{registrar cada TUE} com sua localização (ambiente) e característica de potência/corrente;
-    \item \textbf{alocar cada TUE em circuito terminal próprio}, evitando compartilhamento com TUG;
-    \item \textbf{permitir (por critério de projetista)} a criação de circuitos dedicados também para cargas com corrente inferior a 10 A quando houver justificativa técnica (por exemplo, natureza motriz ou sensibilidade eletrônica), mantendo coerência com a boa prática.
+    \item registrar cada TUE com sua localização (ambiente) e característica de potência/corrente;
+    \item alocar cada TUE em circuito terminal próprio, evitando compartilhamento com TUG;
+    \item permitir (por critério de projetista) a criação de circuitos dedicados também para cargas com corrente inferior a 10 A quando houver justificativa técnica (por exemplo, natureza motriz ou sensibilidade eletrônica), mantendo coerência com a boa prática.
 \end{itemize}
 \subsection{Divisão da instalação em circuitos terminais}
 
@@ -202,20 +202,20 @@ Com as cargas mínimas de iluminação e TUG calculadas e as TUE consolidadas, r
 A metodologia aplica:
 
 \begin{enumerate}
-    \item[\textbf{(a)}] \textbf{Separação funcional:} circuitos de \textbf{iluminação} devem ser separados de circuitos de \textbf{tomadas de uso geral} (boa prática consistente com projetos residenciais).
+    \item[\textbf{(a)}] \textit{Separação funcional:} circuitos de iluminação devem ser separados de circuitos de tomadas de uso geral (boa prática consistente com projetos residenciais) \cite{Creder2016}.
     
-    \item[\textbf{(b)}] \textbf{Circuitos exclusivos para TUE (subitem 9.5.3.1):} TUE alocadas em circuitos independentes quando aplicável (corrente nominal $> 10$ A ou carga dedicada/virtualmente dedicada).
+    \item[\textbf{(b)}] \textit{Circuitos exclusivos para TUE (subitem 9.5.3.1):} TUE alocadas em circuitos independentes quando aplicável (corrente nominal $> 10$ A ou carga dedicada/virtualmente dedicada).
     
-    \item[\textbf{(c)}] \textbf{Tomadas de cozinhas e áreas semelhantes (item 9.5.3.2):} os pontos de tomada de cozinhas, copas-cozinhas, áreas de serviço, lavanderias e locais semelhantes devem ser atendidos por circuitos destinados \textbf{exclusivamente} às tomadas desses locais.
+    \item[\textbf{(c)}] \textit{Tomadas de cozinhas e áreas semelhantes (item 9.5.3.2):} os pontos de tomada de cozinhas, copas-cozinhas, áreas de serviço, lavanderias e locais semelhantes devem ser atendidos por circuitos destinados exclusivamente às tomadas desses locais.
     
-    \item[\textbf{(d)}] \textbf{Limitação de potência por circuito:} para manter o projeto coerente com faixas usuais de proteção, adota-se a limitação de potência como boa prática:
+    \item[\textbf{(d)}] \textit{Limitação de potência por circuito:} para manter o projeto coerente com faixas usuais de proteção, adota-se a limitação de potência como boa prática \cite{Mamede2017}:
     \begin{itemize}
-        \item \textbf{Iluminação:} limitar a potência por circuito conforme prática didática e valores de referência por tensão.
-        \item \textbf{TUG:} limitar a potência por circuito considerando a capacidade dos dispositivos de proteção e condutores.
+        \item \textit{Iluminação:} limitar a potência por circuito conforme prática didática e valores de referência por tensão.
+        \item \textit{TUG:} limitar a potência por circuito considerando a capacidade dos dispositivos de proteção e condutores.
     \end{itemize}
     \textit{Nota: Quando a potência total se mantém abaixo dos limites de referência, admite-se manter um único circuito, respeitadas as separações funcionais.}
 
-    \item[\textbf{(e)}] \textbf{Distribuição entre fases:} em instalações bifásicas ou trifásicas, as cargas devem ser distribuídas buscando o maior equilíbrio possível entre as fases.
+    \item[\textbf{(e)}] \textit{Distribuição entre fases:} em instalações bifásicas ou trifásicas, as cargas devem ser distribuídas buscando o maior equilíbrio possível entre as fases.
 \end{enumerate}
 \subsection{Previsão de circuitos reserva}
 O método prevê reserva para ampliações futuras sob dois aspectos complementares:
@@ -249,10 +249,10 @@ O memorial gerado segue uma estrutura padronizada, organizada em seções que re
 O memorial é composto, de modo geral, pelas seguintes seções:
 
 \begin{enumerate}
-    \item \textbf{Dados da obra} \\
+    \item \textit{Dados da obra} \\
     Identificação da edificação, localização, tipo de uso e dados básicos do projeto. Essa seção também inclui campos para identificação do(s) projetista(s) e informações de fornecimento quando aplicável.
 
-    \item \textbf{Objetivos e escopo do memorial} \\
+    \item \textit{Objetivos e escopo do memorial} \\
     Apresenta o objetivo do documento e delimita o escopo do projeto gerado, tipicamente incluindo:
     \begin{itemize}
         \item definição e quantificação de cargas por ambiente;
@@ -262,7 +262,7 @@ O memorial é composto, de modo geral, pelas seguintes seções:
         \item diretrizes de organização do quadro e registros necessários para execução.
     \end{itemize}
 
-    \item \textbf{Metodologia aplicada no memorial} \\
+    \item \textit{Metodologia aplicada no memorial} \\
     Resume os critérios adotados para levantamento de cargas e dimensionamento, com referência direta aos itens normativos que fundamentam as regras aplicadas. Em especial:
     \begin{itemize}
         \item previsão de cargas mínimas de iluminação e tomadas conforme ABNT NBR 5410 (item 9.5.2);
@@ -273,7 +273,7 @@ O memorial é composto, de modo geral, pelas seguintes seções:
         \item critérios de dimensionamento de condutores por capacidade de condução de corrente e seções mínimas, conforme os itens aplicáveis da ABNT NBR 5410.
     \end{itemize}
 
-    \item \textbf{Levantamento de cargas (por ambiente)} \\
+    \item \textit{Levantamento de cargas (por ambiente)} \\
     Apresenta tabelas por dependência com: área, perímetro, quantidade de pontos e potência mínima prevista para:
     \begin{itemize}
         \item iluminação (com base no item 9.5.2);
@@ -282,7 +282,7 @@ O memorial é composto, de modo geral, pelas seguintes seções:
     \end{itemize}
     Ao final, o memorial consolida um quadro-resumo de cargas e a potência total prevista.
 
-    \item \textbf{Divisão dos circuitos terminais} \\
+    \item \textit{Divisão dos circuitos terminais} \\
     Documenta a etapa de agrupamento das cargas em circuitos, explicitando:
     \begin{itemize}
         \item separação entre iluminação e tomadas;
@@ -292,19 +292,19 @@ O memorial é composto, de modo geral, pelas seguintes seções:
         \item registro de circuitos reserva.
     \end{itemize}
 
-    \item \textbf{Padrão de fornecimento e dimensionamento da entrada/proteção geral} \\
+    \item \textit{Padrão de fornecimento e dimensionamento da entrada/proteção geral} \\
     Com base na potência instalada prevista e nos critérios aplicáveis da concessionária local, registra: tipo de fornecimento (monofásico/bifásico/trifásico), proteção geral e seção mínima do condutor de entrada.
 
-    \item \textbf{Balanceamento de cargas (quando aplicável)} \\
+    \item \textit{Balanceamento de cargas (quando aplicável)} \\
     Apresenta a distribuição dos circuitos e um resumo das potências por fase, buscando o equilíbrio de potência.
 
-    \item \textbf{Dimensionamento dos condutores} \\
+    \item \textit{Dimensionamento dos condutores} \\
     Apresenta o dimensionamento por circuito contendo: potência, tensão, corrente de projeto e seção final selecionada, incluindo condutores neutro e de proteção.
 
-    \item \textbf{Dimensionamento dos dispositivos de proteção} \\
+    \item \textit{Dimensionamento dos dispositivos de proteção} \\
     Documenta a seleção do dispositivo de proteção por circuito, registrando o critério de coordenação entre corrente de projeto, corrente nominal do dispositivo e capacidade do condutor através das inequações normativas.
 
-    \item \textbf{Resumo consolidado} \\
+    \item \textit{Resumo consolidado} \\
     Consolida em tabelas finais: resumo por dependência, resumo por circuito, tabela completa de dimensionamento e resumo do fornecimento geral.
 \end{enumerate}
 
@@ -315,7 +315,7 @@ A estrutura do memorial é construída para manter correspondência direta com o
 A validação da metodologia proposta foi conduzida por meio de um estudo de caso, no qual os resultados gerados pelo método foram comparados com referências acadêmicas consolidadas no contexto de instalações elétricas residenciais. O objetivo dessa validação é verificar se as saídas produzidas, tais como previsão de cargas mínimas, divisão em circuitos terminais, dimensionamento de condutores, seleção de dispositivos de proteção e, quando aplicável, balanceamento de fases, permanecem coerentes com os critérios normativos e com práticas de projeto utilizadas no ensino de engenharia elétrica.
 
 \subsection{Base de refrência e dados utilizados}
-Como referência principal, foi adotado um projeto elétrico residencial disponibilizado em contexto didático no curso de instalações elétricas residenciais da Universidade Federal do Ceará (UFC) \cite{ApostilaUFC}, que inclui enunciado do projeto, solução de referência (gabarito do docente) e soluções típicas produzidas por discentes. Essa escolha se justifica por se tratar de material estruturado com finalidade pedagógica e alinhado às exigências normativas, permitindo uma comparação objetiva entre o resultado esperado e o resultado obtido pela metodologia.
+Como referência principal, foi adotado um projeto elétrico residencial disponibilizado em contexto didático no curso de instalações elétricas residenciais da Universidade Federal do Ceará (UFC) \cite{ApostilaUFC, UFC_Prediais_ManualPraticas_2025}, que inclui enunciado do projeto, solução de referência (gabarito do docente) e soluções típicas produzidas por discentes. Essa escolha se justifica por se tratar de material estruturado com finalidade pedagógica e alinhado às exigências normativas, permitindo uma comparação objetiva entre o resultado esperado e o resultado obtido pela metodologia.
 
 A entrada do estudo de caso foi composta pelas informações essenciais do imóvel (ambientes e dimensões) e pelos parâmetros de fornecimento e premissas usuais de projeto (por exemplo, tensão e condições de instalação de referência), de modo a reproduzir condições equivalentes às utilizadas no exercício acadêmico.
 
