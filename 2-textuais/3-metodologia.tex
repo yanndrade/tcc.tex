@@ -7,17 +7,21 @@ Além disso, o método foi estruturado para manter rastreabilidade ao longo da e
 Neste capítulo, serão detalhadas as metodologias empregadas para (a) coletar e organizar as entradas do usuário, (b) construir o modelo do imóvel, (c) executar o pipeline de dimensionamento e (d) validar o atendimento às normas técnicas, culminando na geração do memorial de cálculo.
 
 \section*{Solução proposta e visão geral do Fluxo}
-\begin{figure}[h!]
+\begin{landscape}
+\begin{figure}[p]
 	\centering
 	\Caption{\label{fig:bpmn} Fluxo metodológico do agente para projeto elétrico residencial}	
 	\UFCfig{}{
-	    \includegraphics[width=\textwidth]{figuras/bpmn.png}
+	    \includegraphics[width=\linewidth]{figuras/bpmn.png}
 	}{
 	    \Fonte{Elaborado pelo autor}
 	}	
 \end{figure}
+\end{landscape}
 
-A Figura \ref{fig:bpmn} apresenta o fluxo metodológico proposto neste trabalho, representado em formato processual. O processo se inicia com o fornecimento de informações pelo usuário ao agente, podendo ocorrer por dois caminhos de entrada: texto (conversação em linguagem natural) ou imagem da planta baixa.
+A Figura \ref{fig:bpmn} apresenta o fluxo metodológico proposto neste trabalho, representado em formato processual. O processo, se inicia com o fornecimento de informações pelo usuário ao agente, podendo ocorrer por dois caminhos de entrada: texto (conversação em linguagem natural) ou imagem da planta baixa.
+
+
 
 No primeiro caminho, o usuário interage por mensagens, e as informações são interpretadas e consolidadas progressivamente, até que o escopo do projeto seja suficientemente definido. No segundo caminho, o usuário fornece uma planta baixa em formato de imagem contendo, preferencialmente, identificação dos ambientes e suas dimensões. A interpretação da planta busca extrair os dados geométricos necessários ao dimensionamento; quando a extração não é satisfatória, o fluxo prevê mecanismos auxiliares de extração e normalização das informações. Em ambos os casos, as informações obtidas alimentam a construção e atualização do modelo da residência, que representa os ambientes e as cargas previstas, incluindo cargas específicas informadas pelo usuário ao longo da interação.
 
@@ -26,12 +30,33 @@ Uma vez consolidado o modelo do imóvel, o fluxo avança para as etapas de dimen
 O diagrama também contempla pontos de decisão e realimentação. Caso seja identificado que algum critério não foi atendido (por exemplo, necessidade de ajuste de dimensionamento), o processo retorna às etapas apropriadas para correção. Ao final, é executada uma etapa de validação de conformidade normativa, na qual se verifica se os resultados atendem aos requisitos aplicáveis e às boas práticas adotadas. Somente após a validação positiva o fluxo segue para a geração do memorial de cálculo e demais tabelas finais do projeto, encerrando o processo.
 
 \section{Aquisição das informações do projeto e consolidação do escopo}
-O funcionamento do método proposto depende, inicialmente, da aquisição e estruturação das informações do projeto elétrico residencial. Nesta etapa, o objetivo é transformar entradas não estruturadas (texto em linguagem natural e/ou imagem da planta) em um modelo de dados estruturado, contendo os parâmetros mínimos necessários para a execução dos dimensionamentos previstos no escopo do trabalho.
+
+O funcionamento do método proposto depende, inicialmente, da aquisição e estruturação das informações do projeto elétrico residencial. Nesta etapa, descrita na Figura \ref{fig:pt1}, o objetivo é transformar entradas não estruturadas (texto em linguagem natural e/ou imagem da planta) em um modelo de dados estruturado, contendo os parâmetros mínimos necessários para a execução dos dimensionamentos previstos no escopo do trabalho.
+
+\begin{figure}[h!]
+    \centering
+    \Caption{\label{fig:pt1} Recorte do fluxo metodológico: aquisição de informações e consolidação do escopo}	
+    \UFCfig{}{
+	\includegraphics[width=0.5\textwidth]{figuras/pt1.png}
+    }{
+	\Fonte{Elaborado pelo autor}
+    }	
+\end{figure}
 
 A aquisição das informações ocorre por dois caminhos: (i) interação conversacional e (ii) interpretação de planta baixa em formato de imagem. Em ambos os casos, o fluxo prevê mecanismos de confirmação e complementação, de modo que o escopo seja considerado “fechado” apenas quando o modelo do imóvel estiver completo o suficiente para dar início aos cálculos.
 
 \subsection{Entrada por conversação em linguagem natural}
-No modo conversacional, o usuário descreve características do imóvel e do fornecimento por meio de mensagens em linguagem natural. O sistema conduz uma sequência de perguntas e confirmações para reduzir ambiguidade e coletar informações essenciais. Essa abordagem é particularmente útil quando o usuário não possui a planta em imagem ou quando existem dados que não estão explicitamente presentes na planta.
+No modo conversacional, detalhado na Figura \ref{fig:pt1texto}, o usuário descreve características do imóvel e do fornecimento por meio de mensagens em linguagem natural. O sistema conduz uma sequência de perguntas e confirmações para reduzir ambiguidade e coletar informações essenciais. Essa abordagem é particularmente útil quando o usuário não possui a planta em imagem ou quando existem dados que não estão explicitamente presentes na planta.
+
+\begin{figure}[h!]
+    \centering
+    \Caption{\label{fig:pt1texto} Detalhe do fluxo: entrada por conversação em linguagem natural}	
+    \UFCfig{}{
+	\includegraphics[width=0.5\textwidth]{figuras/pt1texto.png}
+    }{
+	\Fonte{Elaborado pelo autor}
+    }	
+\end{figure}
 
 As informações mínimas buscadas nessa etapa incluem:
 
@@ -48,7 +73,17 @@ As informações mínimas buscadas nessa etapa incluem:
 À medida que o diálogo avança, as informações são registradas no modelo de dados do projeto. Quando o usuário menciona a existência de uma carga dedicada (por exemplo, um equipamento com alimentação específica em determinado ambiente), essa carga passa a compor explicitamente o modelo do imóvel e será tratada nas etapas posteriores.
 
 \subsection{Entrada por imagem da planta baixa}
-No modo de entrada por imagem, o usuário fornece uma planta baixa que contenha, preferencialmente, identificação dos ambientes e dimensões (comprimento e largura). A partir dessa entrada, o sistema realiza a interpretação da planta para extrair dados geométricos relevantes ao dimensionamento, como:
+No modo de entrada por imagem, ilustrado na Figura \ref{fig:pt1imagem}, o usuário fornece uma planta baixa que contenha, preferencialmente, identificação dos ambientes e dimensões (comprimento e largura). A partir dessa entrada, o sistema realiza a interpretação da planta para extrair dados geométricos relevantes ao dimensionamento, como:
+
+\begin{figure}[h!]
+    \centering
+    \Caption{\label{fig:pt1imagem} Detalhe do fluxo: entrada por imagem da planta baixa}	
+    \UFCfig{}{
+	\includegraphics[width=0.3\textwidth]{figuras/pt1imagem.png}
+    }{
+	\Fonte{Elaborado pelo autor}
+    }	
+\end{figure}
 
 \begin{itemize}
 	\item lista de ambientes;
@@ -109,7 +144,7 @@ Quando houver necessidade de esclarecer decisões (por exemplo, justificar a sep
 
 \subsection{Organização do pipeline de dimensionamento}
 
-O dimensionamento é estruturado em etapas sequenciais, refletindo o fluxo de projeto e reduzindo dependências circulares. De forma geral, o pipeline é organizado como:
+O dimensionamento é estruturado em etapas sequenciais, refletindo o fluxo de projeto e reduzindo dependências circulares, conforme detalhado na Figura \ref{fig:pipeline}. De forma geral, o pipeline é organizado como:
 
 \begin{enumerate}
     \item \textit{Cálculo das cargas por ambiente:} determinação das cargas mínimas de iluminação e das cargas de tomadas de uso geral (TUG) por ambiente, conforme regras normativas para cada tipo de cômodo.
@@ -130,7 +165,17 @@ Critérios adicionais, como verificação de queda de tensão, curto-circuito e 
 
 \section{Pipeline de dimensionamento do projeto elétrico}
 \label{sec:pipeline}
-O dimensionamento do projeto elétrico residencial proposto neste trabalho é conduzido por um pipeline sequencial, fundamentado na previsão de cargas mínimas e na organização em circuitos terminais, conforme critérios normativos e boas práticas usuais. O levantamento das potências é realizado por meio de uma previsão das cargas mínimas de iluminação e tomadas, permitindo determinar a potência total prevista da instalação. Essa previsão segue o que estabelece o item 9.5.2 da ABNT NBR 5410 \cite{NBR5410:2004}, que orienta o procedimento de estimativa das cargas a serem instaladas.
+O dimensionamento do projeto elétrico residencial proposto neste trabalho é conduzido por um pipeline sequencial, ilustrado na Figura \ref{fig:pipeline}, fundamentado na previsão de cargas mínimas e na organização em circuitos terminais, conforme critérios normativos e boas práticas usuais. O levantamento das potências é realizado por meio de uma previsão das cargas mínimas de iluminação e tomadas, permitindo determinar a potência total prevista da instalação. Essa previsão segue o que estabelece o item 9.5.2 da ABNT NBR 5410 \cite{NBR5410:2004}, que orienta o procedimento de estimativa das cargas a serem instaladas.
+
+\begin{figure}[h!]
+    \centering
+    \Caption{\label{fig:pipeline} Pipeline de dimensionamento do projeto elétrico}	
+    \UFCfig{}{
+	\includegraphics[width=\textwidth]{figuras/pipeline.png}
+    }{
+	\Fonte{Elaborado pelo autor}
+    }	
+\end{figure}
 
 \subsection{Previsão de carga de iluminação}
 A carga mínima de iluminação por cômodo/dependência é estimada em função da área do ambiente, conforme o \textit{item 9.5.2} da ABNT NBR 5410 \cite{NBR5410:2004}. Para fins de aplicação metodológica, adota-se:
@@ -163,7 +208,8 @@ Como saída dessa etapa, o método obtém a quantidade mínima de TUG por ambien
 	\centering
 	\Caption{\label{tab:regras_tug} Regras mínimas de previsão de TUG por tipo de ambiente e potência atribuída}
 	\UFCtab{}{
-		\begin{tabular}{lp{7cm}l}
+		\resizebox{\linewidth}{!}{
+			\begin{tabular}{lp{7cm}l}
 			\toprule
 	    		Tipo de ambiente & Regra mínima de quantidade & Potência atribuída \\
 			\midrule \midrule
@@ -178,6 +224,7 @@ Como saída dessa etapa, o método obtém a quantidade mínima de TUG por ambien
 				Demais cômodos & Área $\le$ 6 m$^2$: 1 tomada; Área $>$ 6 m$^2$: 1 a cada 5 m de perímetro & 100 VA por tomada \\
 			\bottomrule
 		\end{tabular}
+		}
 	}{
 		\Fonte{Adaptado de ABNT \cite{NBR5410:2004}.}
     }
@@ -309,7 +356,7 @@ O memorial é composto, de modo geral, pelas seguintes seções:
 \end{enumerate}
 
 \subsection{Rastreabilidade entre método e documento}
-A estrutura do memorial é construída para manter correspondência direta com o pipeline descrito na Seção 3.3. Assim, cada tabela do memorial deriva de uma etapa do método (cargas → circuitos → condutores → proteções → fornecimento/balanceamento), permitindo auditoria e verificação dos resultados obtidos.
+A estrutura do memorial é construída para manter correspondência direta com o pipeline descrito na Seção \ref{sec:pipeline} e ilustrado na Figura \ref{fig:pipeline}. Assim, cada tabela do memorial deriva de uma etapa do método (cargas → circuitos → condutores → proteções → fornecimento/balanceamento), permitindo auditoria e verificação dos resultados obtidos.
 
 \section{Estratégia de validação da metodologia}
 A validação da metodologia proposta foi conduzida por meio de um estudo de caso, no qual os resultados gerados pelo método foram comparados com referências acadêmicas consolidadas no contexto de instalações elétricas residenciais. O objetivo dessa validação é verificar se as saídas produzidas, tais como previsão de cargas mínimas, divisão em circuitos terminais, dimensionamento de condutores, seleção de dispositivos de proteção e, quando aplicável, balanceamento de fases, permanecem coerentes com os critérios normativos e com práticas de projeto utilizadas no ensino de engenharia elétrica.

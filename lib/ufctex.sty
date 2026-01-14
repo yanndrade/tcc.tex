@@ -172,10 +172,23 @@
 %\SetAlCapSkip{\onelineskip}
 
 % Distance between floats on the top or the bottom and the text;
-\setlength{\textfloatsep}{18pt plus 2pt minus 2pt}
+\setlength{\textfloatsep}{10pt plus 2pt minus 2pt}
 
 % Distance between floats inserted inside the page text (using h) and the text proper.
-\setlength{\intextsep}{18pt plus 2pt minus 2pt}
+\setlength{\intextsep}{10pt plus 2pt minus 2pt}
+
+% --- Parametros de posicionamento de floats (Relaxed) ---
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\setcounter{dbltopnumber}{2}
+\renewcommand{\dbltopfraction}{0.9}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.7}
+\renewcommand{\dblfloatpagefraction}{0.7}
+% --------------------------------------------------------
 
 \newcommand{\Caption}[1]{ %
 	\begin{Spacing}{1.} %
@@ -961,8 +974,7 @@
 
 \newcommand{\imprimirdedicatoria}[1]{
 	\ifthenelse{\boolean{ufctex@ehqualificacao}}{}{
-		\vspace*{20cm}
-		\vfill
+		\vspace*{\fill}
 		%Retira o espaço do paragrafo
 		\hspace*{-2cm}
 		%Adiciona o espaço da margem
@@ -1216,8 +1228,9 @@
 \setlength{\glsdescwidth}{\linewidth}
 
 \newcommand{\imprimirlistadeabreviaturasesiglas}{ %
-	\printglossary[type=\acronymtype,style=long,nonumberlist,title={Lista de Abreviaturas e Siglas\vspace{-0.3cm}}] %
-	\pagebreak %
+		\glsaddall[types={\acronymtype}]%
+		\printglossary[type=\acronymtype,style=long,nonumberlist,title={Lista de Abreviaturas e Siglas\vspace{-0.3cm}}] %
+		\pagebreak %
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

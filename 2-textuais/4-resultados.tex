@@ -8,13 +8,24 @@ Os resultados obtidos foram avaliados por comparação com materiais de referên
 A validação foi conduzida por meio de três exercícios extraídos de manuais e procedimentos de laboratório de disciplinas relacionadas a instalações elétricas, nos quais é proposto o desenvolvimento completo do projeto elétrico residencial a partir da planta e de requisitos mínimos \cite{ApostilaUFC}. Os três estudos de caso são compostos por residências/apartamentos com distribuição típica de ambientes, possibilitando avaliar a metodologia em cenários de complexidade crescente.
 
 \subsection{Estudo de caso 1}
-O primeiro estudo de caso corresponde a uma residência composta por quatro dependências: cozinha, banheiro, sala e quarto. As dimensões de cada ambiente são apresentadas na Tabela \ref{tab:dimensoes_ambientes_ec1} 
+O primeiro estudo de caso corresponde a uma residência composta por quatro dependências: cozinha, banheiro, sala e quarto. A planta baixa utilizada é apresentada na Figura \ref{fig:ec1}, e as dimensões de cada ambiente são detalhadas na Tabela \ref{tab:dimensoes_ambientes_ec1}. O memorial completo encontra-se no Apêndice \ref{ap:A}.
+
+\begin{figure}[h!]
+    \centering
+    \Caption{\label{fig:ec1} Planta baixa do Estudo de Caso 1}	
+    \UFCfig{}{
+	\includegraphics[width=0.7\textwidth]{figuras/ec1.png}
+    }{
+	\Fonte{Elaborado pelo autor (2026).}
+    }	
+\end{figure}
 
 \begin{table}[!h]	
 	\centering
 	\Caption{\label{tab:dimensoes_ambientes_ec1} Dimensões, áreas e perímetros dos ambientes do projeto}
 	\UFCtab{}{
-		\begin{tabular}{lccc}
+		\resizebox{\linewidth}{!}{
+			\begin{tabular}{lccc}
 			\toprule
 			Ambiente & Dimensões (m) & Área (m$^2$) & Perímetro (m) \\
 			\midrule \midrule
@@ -26,20 +37,32 @@ O primeiro estudo de caso corresponde a uma residência composta por quatro depe
 			\addlinespace
 			Quarto      & 3,00 $\times$ 3,25 & 9,75 & 12,5 \\
 			\bottomrule
-		\end{tabular}
-	}{
-		\Fonte{Elaborado pelo autor (2026).}
-	}
-\end{table}
+				\end{tabular}
+			}
+		}{
+				\Fonte{Elaborado pelo autor (2026).}
+			}
+		\end{table}
 
 \subsection{Estudo de caso 2}
-O segundo estudo de caso corresponde a um apartamento composto por cozinha, sala, quarto, banheiro e uma área de circulação. As dimensões são apresentadas na Tabela \ref{tab:ambientes_caso2}
+O segundo estudo de caso corresponde a um apartamento composto por cozinha, sala, quarto, banheiro e uma área de circulação. A planta baixa é mostrada na Figura \ref{fig:ec2}, e as dimensões são apresentadas na Tabela \ref{tab:ambientes_caso2}. O memorial completo encontra-se no Apêndice \ref{ap:B}.
+
+\begin{figure}[h!]
+    \centering
+    \Caption{\label{fig:ec2} Planta baixa do Estudo de Caso 2}	
+    \UFCfig{}{
+	\includegraphics[width=0.6\textwidth]{figuras/ec2.png}
+    }{
+	\Fonte{Elaborado pelo autor (2026).}
+    }	
+\end{figure}
 
 \begin{table}[h!]	
 	\centering
 	\Caption{\label{tab:ambientes_caso2} Ambientes e dimensões do Estudo de Caso 2}
 	\UFCtab{}{
-		\begin{tabular}{lccc}
+		\resizebox{\linewidth}{!}{
+			\begin{tabular}{lccc}
 			\toprule
 			Ambiente & Dimensões (m) & Área (m$^2$) & Perímetro (m) \\
 			\midrule \midrule
@@ -53,20 +76,32 @@ O segundo estudo de caso corresponde a um apartamento composto por cozinha, sala
 			\addlinespace
 			Circulação  & 1,00 $\times$ 6,00 & 6,00  & 14,00 \\
 			\bottomrule
-		\end{tabular}
-	}{
-		\Fonte{Elaborado pelo autor (2026).}
-	}
-\end{table}
+				\end{tabular}
+			}
+		}{
+				\Fonte{Elaborado pelo autor (2026).}
+			}
+		\end{table}
 
 \subsection{Estudo de caso 3}
-O terceiro estudo de caso corresponde a um apartamento com maior quantidade de dependências, incluindo área de serviço, cozinha, dois dormitórios, banheiro, copa e sala. As dimensões são apresentadas na Tabela \ref{tab:ambientes_caso3}
+O terceiro estudo de caso corresponde a um apartamento com maior quantidade de dependências, incluindo área de serviço, cozinha, dois dormitórios, banheiro, copa e sala. A planta baixa pode ser visualizada na Figura \ref{fig:ec3}, e as dimensões são apresentadas na Tabela \ref{tab:ambientes_caso3}. O memorial completo encontra-se no Apêndice \ref{ap:C}.
+
+\begin{figure}[h!]
+    \centering
+    \Caption{\label{fig:ec3} Planta baixa do Estudo de Caso 3}	
+    \UFCfig{}{
+	\includegraphics[width=0.5\textwidth]{figuras/ec3.png}
+    }{
+	\Fonte{Elaborado pelo autor (2026).}
+    }	
+\end{figure}
 
 \begin{table}[h!]	
 	\centering
 	\Caption{\label{tab:ambientes_caso3} Ambientes e dimensões do Estudo de Caso 3}
 	\UFCtab{}{
-		\begin{tabular}{lccc}
+		\resizebox{\linewidth}{!}{
+			\begin{tabular}{lccc}
 			\toprule
 			Ambiente & Dimensões (m) & Área (m$^2$) & Perímetro (m) \\
 			\midrule \midrule
@@ -85,6 +120,7 @@ O terceiro estudo de caso corresponde a um apartamento com maior quantidade de d
 			Sala            & 3,05 $\times$ 3,25 & 9,91  & 12,60 \\
 			\bottomrule
 		\end{tabular}
+		}
 	}{
 		\Fonte{Elaborado pelo autor (2026).}
 	}
@@ -109,11 +145,13 @@ Nesta seção são apresentados os resultados do levantamento das cargas mínima
 Ressalta-se que não foram consideradas cargas de tomadas de uso específico (TUE) nos três estudos por se tratarem de exercícios didáticos de manual. Ainda assim, a metodologia prevê a inclusão de TUE quando identificadas na entrada ou informadas pelo usuário.
 
 \subsection{Estudo de caso 1}
-\begin{table}[h!]	
-	\centering
-	\Caption{\label{tab:iluminacao_caso1} Cargas mínimas de iluminação (Estudo de caso 1)}
+As cargas mínimas de iluminação e tomadas de uso geral previstas para o Estudo de caso 1 são apresentadas nas Tabelas \ref{tab:iluminacao_caso1} e \ref{tab:tug_caso1}.
+
+\begin{table}[h!]
+		\centering
 	\UFCtab{}{
-		\begin{tabular}{lcccc}
+		\resizebox{\linewidth}{!}{
+			\begin{tabular}{lcccc}
 			\toprule
 			Dependência & Área (m$^2$) & Perímetro (m) & Nº de pontos & Potência total (VA) \\
 			\midrule \midrule
@@ -128,6 +166,7 @@ Ressalta-se que não foram consideradas cargas de tomadas de uso específico (TU
 			\textbf{Total} & & & \textbf{6} & \textbf{520} \\
 			\bottomrule
 		\end{tabular}
+		}
 	}{
 		\Fonte{Elaborado pelo autor (2026).}
 	}
@@ -137,7 +176,8 @@ Ressalta-se que não foram consideradas cargas de tomadas de uso específico (TU
 	\centering
 	\Caption{\label{tab:tug_caso1} Cargas mínimas de TUG (Estudo de caso 1)}
 	\UFCtab{}{
-		\begin{tabular}{lccccc}
+		\resizebox{\linewidth}{!}{
+			\begin{tabular}{lccccc}
 			\toprule
 			Dependência & Área (m$^2$) & Perímetro (m) & Nº TUG 100 VA & Nº TUG 600 VA & Potência total (VA) \\
 			\midrule \midrule
@@ -152,16 +192,21 @@ Ressalta-se que não foram consideradas cargas de tomadas de uso específico (TU
 			\textbf{Total} & & & \textbf{8} & \textbf{4} & \textbf{3200} \\
 			\bottomrule
 		\end{tabular}
+		}
 	}{
 		\Fonte{Elaborado pelo autor (2026).}
 	}
 \end{table}
 
 \subsection{Estudo de caso 2}
-\begin{table}[h!]	
-	\centering
+Para o Estudo de caso 2, as Tabelas \ref{tab:iluminacao_caso2} e \ref{tab:tug_caso2} detalham a previsão de cargas de iluminação e TUG, respectivamente.
+
+\begin{table}[h!]
+		\centering
 	\Caption{\label{tab:iluminacao_caso2} Cargas mínimas de iluminação (Estudo de caso 2)}
+
 	\UFCtab{}{
+		\resizebox{\linewidth}{!}{
 		\begin{tabular}{lcccc}
 			\toprule
 			Dependência & Área (m$^2$) & Perímetro (m) & Nº de pontos & Potência total (VA) \\
@@ -179,6 +224,7 @@ Ressalta-se que não foram consideradas cargas de tomadas de uso específico (TU
 			\textbf{Total} & & & \textbf{10} & \textbf{800} \\
 			\bottomrule
 		\end{tabular}
+		}
 	}{
 		\Fonte{Elaborado pelo autor (2026).}
 	}
@@ -188,7 +234,8 @@ Ressalta-se que não foram consideradas cargas de tomadas de uso específico (TU
 	\centering
 	\Caption{\label{tab:tug_caso2} Cargas mínimas de TUG (Estudo de caso 2)}
 	\UFCtab{}{
-		\begin{tabular}{lccccc}
+		\resizebox{\linewidth}{!}{
+			\begin{tabular}{lccccc}
 			\toprule
 			Dependência & Área (m$^2$) & Perímetro (m) & Nº TUG 100 VA & Nº TUG 600 VA & Potência total (VA) \\
 			\midrule \midrule
@@ -205,18 +252,21 @@ Ressalta-se que não foram consideradas cargas de tomadas de uso específico (TU
 			\textbf{Total} & & & \textbf{10} & \textbf{4} & \textbf{3400} \\
 			\bottomrule
 		\end{tabular}
+		}
 	}{
 		\Fonte{Elaborado pelo autor (2026).}
 	}
 \end{table}
 
 \subsection{Estudo de caso 3}
+Os resultados da previsão de cargas para o terceiro estudo de caso constam nas Tabelas \ref{tab:iluminacao_caso3} e \ref{tab:tug_caso3}.
 
-\begin{table}[!h]	
+\begin{table}[!h]
 	\centering
 	\Caption{\label{tab:iluminacao_caso3} Cargas mínimas de iluminação (Estudo de caso 3)}
 	\UFCtab{}{
-		\begin{tabular}{lcccc}
+		\resizebox{\linewidth}{!}{
+			\begin{tabular}{lcccc}
 			\toprule
 			Dependência & Área (m$^2$) & Perímetro (m) & Nº de pontos & Potência total (VA) \\
 			\midrule \midrule
@@ -237,6 +287,7 @@ Ressalta-se que não foram consideradas cargas de tomadas de uso específico (TU
 			\textbf{Total} & & & \textbf{10} & \textbf{880} \\
 			\bottomrule
 		\end{tabular}
+		}
 	}{
 		\Fonte{Elaborado pelo autor (2026).}
 	}
@@ -246,7 +297,8 @@ Ressalta-se que não foram consideradas cargas de tomadas de uso específico (TU
 	\centering
 	\Caption{\label{tab:tug_caso3} Cargas mínimas de TUG (Estudo de caso 3)}
 	\UFCtab{}{
-		\begin{tabular}{lccccc}
+		\resizebox{\linewidth}{!}{
+			\begin{tabular}{lccccc}
 			\toprule
 			Dependência & Área (m$^2$) & Perímetro (m) & Nº TUG 100 VA & Nº TUG 600 VA & Potência total (VA) \\
 			\midrule \midrule
@@ -267,6 +319,7 @@ Ressalta-se que não foram consideradas cargas de tomadas de uso específico (TU
 			\textbf{Total} & & & \textbf{12} & \textbf{7} & \textbf{5400} \\
 			\bottomrule
 		\end{tabular}
+		}
 	}{
 		\Fonte{Elaborado pelo autor (2026).}
 	}
@@ -276,11 +329,14 @@ Ressalta-se que não foram consideradas cargas de tomadas de uso específico (TU
 A partir das cargas previstas na Seção 4.2, as cargas foram agrupadas e distribuídas em circuitos terminais. Em todos os casos, foi mantida a separação entre circuitos de iluminação e circuitos de tomadas. Adicionalmente, foram previstos circuitos reserva no quadro de distribuição, seguindo prática usual de projeto para acomodar ampliações futuras \cite{Creder2016}.
 
 \subsection{Estudo de caso 1}
+A divisão da instalação do Estudo de caso 1 em circuitos terminais, incluindo a previsão de reservas, é apresentada na Tabela \ref{tab:circuitos_caso1}.
+
 \begin{table}[h!]	
 	\centering
 	\Caption{\label{tab:circuitos_caso1} Divisão em circuitos (Estudo de caso 1)}
 	\UFCtab{}{
-		\begin{tabular}{clllccc}
+		\resizebox{\linewidth}{!}{
+			\begin{tabular}{clllccc}
 			\toprule
 			Circuito & Tipo & Dependências & Descrição & Potência (VA) & FP & Potência (W) \\
 			\midrule \midrule
@@ -297,18 +353,21 @@ A partir das cargas previstas na Seção 4.2, as cargas foram agrupadas e distri
 			\textbf{Total} & & & & \textbf{8120} & & \textbf{7480} \\
 			\bottomrule
 		\end{tabular}
+		}
 	}{
 		\Fonte{Elaborado pelo autor (2026).}
 	}
 \end{table}
 
 \subsection{Estudo de caso 2}
+Para o Estudo de caso 2, a organização dos circuitos terminais, considerando a separação de cargas e reservas, consta na Tabela \ref{tab:circuitos_caso2}.
 
 \begin{table}[h!]	
 	\centering
 	\Caption{\label{tab:circuitos_caso2} Divisão em circuitos (Estudo de caso 2)}
 	\UFCtab{}{
-		\begin{tabular}{clllccc}
+		\resizebox{\linewidth}{!}{
+			\begin{tabular}{clllccc}
 			\toprule
 			Circuito & Tipo & Dependências & Descrição & Potência (VA) & FP & Potência (W) \\
 			\midrule \midrule
@@ -325,18 +384,21 @@ A partir das cargas previstas na Seção 4.2, as cargas foram agrupadas e distri
 			\textbf{Total} & & & & \textbf{8600} & & \textbf{7920} \\
 			\bottomrule
 		\end{tabular}
+		}
 	}{
 		\Fonte{Elaborado pelo autor (2026).}
 	}
 \end{table}
 
 \subsection{Estudo de caso 3}
+A distribuição das cargas em circuitos terminais para o terceiro estudo de caso é detalhada na Tabela \ref{tab:circuitos_caso3}.
 
 \begin{table}[h!]	
 	\centering
 	\Caption{\label{tab:circuitos_caso3} Divisão em circuitos (Estudo de caso 3)}
 	\UFCtab{}{
-		\begin{tabular}{clllccc}
+		\resizebox{\linewidth}{!}{
+			\begin{tabular}{clllccc}
 			\toprule
 			Circuito & Tipo & Dependências & Descrição & Potência (VA) & FP & Potência (W) \\
 			\midrule \midrule
@@ -357,6 +419,7 @@ A partir das cargas previstas na Seção 4.2, as cargas foram agrupadas e distri
 			\textbf{Total} & & & & \textbf{10680} & & \textbf{9600} \\
 			\bottomrule
 		\end{tabular}
+		}
 	}{
 		\Fonte{Elaborado pelo autor (2026).}
 	}
@@ -372,10 +435,13 @@ $$ I_{B} \leq I_{N} \leq I_{Z}$$
 onde $I_B$ representa a corrente de projeto do circuito, $I_N$ a corrente nominal do dispositivo de proteção e $I_Z$ a capacidade de condução de corrente do condutor no método de instalação adotado \cite{Mamede2017}.
 
 \subsection{Estudo de caso 1}
+Para o Estudo de caso 1, o dimensionamento dos condutores é apresentado na Tabela \ref{tab:secoes_cond_caso1}, enquanto a seleção dos disjuntores é detalhada na Tabela \ref{tab:disjuntores_caso1}.
+
 \begin{table}[h!]	
 	\centering
 	\Caption{\label{tab:secoes_cond_caso1} Seções dos condutores (Estudo de caso 1)}
 	\UFCtab{}{
+		\resizebox{\linewidth}{!}{
 		\begin{tabular}{lcccccc}
 			\toprule
 			Circuito & Potência (W) & Tensão (V) & Corrente (A) & Fase (mm$^2$) & Neutro (mm$^2$) & Proteção (mm$^2$) \\
@@ -391,6 +457,7 @@ onde $I_B$ representa a corrente de projeto do circuito, $I_N$ a corrente nomina
 			C05 & 2200,0 & 220 & 10,0 & 2,5 & 2,5 & 2,5 \\
 			\bottomrule
 		\end{tabular}
+		}
 	}{
 		\Fonte{Elaborado pelo autor (2026).}
 	}
@@ -400,7 +467,8 @@ onde $I_B$ representa a corrente de projeto do circuito, $I_N$ a corrente nomina
 	\centering
 	\Caption{\label{tab:disjuntores_caso1} Dimensionamento dos disjuntores (Estudo de caso 1)}
 	\UFCtab{}{
-		\begin{tabular}{lcccccc}
+		\resizebox{\linewidth}{!}{
+			\begin{tabular}{lcccccc}
 			\toprule
 			Circuito & $I_{B}$ (A) & $I_{Z}$ (A) & $I_{N}$ (A) & Seção (mm$^2$) & Redimensionado \\
 			\midrule \midrule
@@ -415,6 +483,7 @@ onde $I_B$ representa a corrente de projeto do circuito, $I_N$ a corrente nomina
 			C05 & 10,0 & 24   & 10 & 2,5 & Não \\
 			\bottomrule
 		\end{tabular}
+		}
 	}{
 		\Fonte{Elaborado pelo autor (2026).}
 	}
@@ -422,12 +491,14 @@ onde $I_B$ representa a corrente de projeto do circuito, $I_N$ a corrente nomina
 
 
 \subsection{Estudo de caso 2}
+Os resultados do dimensionamento para o Estudo de caso 2 podem ser observados nas Tabelas \ref{tab:secoes_cond_caso2} e \ref{tab:disjuntores_caso2}, referentes aos condutores e dispositivos de proteção, respectivamente.
 
 \begin{table}[h!]	
 	\centering
 	\Caption{\label{tab:secoes_cond_caso2} Seções dos condutores (Estudo de caso 2)}
 	\UFCtab{}{
-		\begin{tabular}{lcccccc}
+		\resizebox{\linewidth}{!}{
+			\begin{tabular}{lcccccc}
 			\toprule
 			Circuito & Potência (W) & Tensão (V) & Corrente (A) & Fase (mm$^2$) & Neutro (mm$^2$) & Proteção (mm$^2$) \\
 			\midrule \midrule
@@ -442,6 +513,7 @@ onde $I_B$ representa a corrente de projeto do circuito, $I_N$ a corrente nomina
 			C05 & 2200,0 & 220 & 10,0 & 2,5 & 2,5 & 2,5 \\
 			\bottomrule
 		\end{tabular}
+		}
 	}{
 		\Fonte{Elaborado pelo autor (2026).}
 	}
@@ -451,7 +523,8 @@ onde $I_B$ representa a corrente de projeto do circuito, $I_N$ a corrente nomina
 	\centering
 	\Caption{\label{tab:disjuntores_caso2} Dimensionamento dos disjuntores (Estudo de caso 2)}
 	\UFCtab{}{
-		\begin{tabular}{lcccccc}
+		\resizebox{\linewidth}{!}{
+			\begin{tabular}{lcccccc}
 			\toprule
 			Circuito & $I_{B}$ (A) & $I_{Z}$ (A) & $I_{N}$ (A) & Seção (mm$^2$) & Redimensionado \\
 			\midrule \midrule
@@ -466,18 +539,21 @@ onde $I_B$ representa a corrente de projeto do circuito, $I_N$ a corrente nomina
 			C05 & 10,0 & 24   & 10 & 2,5 & Não \\
 			\bottomrule
 		\end{tabular}
+		}
 	}{
 		\Fonte{Elaborado pelo autor (2026).}
 	}
 \end{table}
 
 \subsection{Estudo de caso 3}
+Para o terceiro estudo de caso, as seções dos condutores dimensionados constam na Tabela \ref{tab:secoes_cond_caso3}, e a especificação dos disjuntores encontra-se na Tabela \ref{tab:disjuntores_caso3}.
 
 \begin{table}[h!]	
 	\centering
 	\Caption{\label{tab:secoes_cond_caso3} Seções dos condutores (Estudo de caso 3)}
 	\UFCtab{}{
-		\begin{tabular}{lcccccc}
+		\resizebox{\linewidth}{!}{
+			\begin{tabular}{lcccccc}
 			\toprule
 			Circuito & Potência (W) & Tensão (V) & Corrente (A) & Fase (mm$^2$) & Neutro (mm$^2$) & Proteção (mm$^2$) \\
 			\midrule \midrule
@@ -496,6 +572,7 @@ onde $I_B$ representa a corrente de projeto do circuito, $I_N$ a corrente nomina
 			C07 & 2200,0 & 220 & 10,0 & 2,5 & 2,5 & 2,5 \\
 			\bottomrule
 		\end{tabular}
+		}
 	}{
 		\Fonte{Elaborado pelo autor (2026).}
 	}
@@ -505,7 +582,8 @@ onde $I_B$ representa a corrente de projeto do circuito, $I_N$ a corrente nomina
 	\centering
 	\Caption{\label{tab:disjuntores_caso3} Dimensionamento dos disjuntores (Estudo de caso 3)}
 	\UFCtab{}{
-		\begin{tabular}{lcccccc}
+		\resizebox{\linewidth}{!}{
+			\begin{tabular}{lcccccc}
 			\toprule
 			Circuito & $I_{B}$ (A) & $I_{Z}$ (A) & $I_{N}$ (A) & Seção (mm$^2$) & Redimensionado \\
 			\midrule \midrule
@@ -524,6 +602,7 @@ onde $I_B$ representa a corrente de projeto do circuito, $I_N$ a corrente nomina
 			C07 & 10,0 & 24   & 10 & 2,5 & Não \\
 			\bottomrule
 		\end{tabular}
+		}
 	}{
 		\Fonte{Elaborado pelo autor (2026).}
 	}
@@ -536,7 +615,8 @@ Com base na potência instalada obtida após a divisão dos circuitos e conforme
 	\centering
 	\Caption{\label{tab:protecao_geral} Tipo de fornecimento e proteção geral (síntese)}
 	\UFCtab{}{
-		\begin{tabular}{lcccc}
+		\resizebox{\linewidth}{!}{
+			\begin{tabular}{lcccc}
 			\toprule
 			Estudo de caso & Potência instalada (kW) & Tipo de fornecimento & Condutor mínimo (mm$^2$) & Disjuntor geral (A) \\
 			\midrule \midrule
@@ -547,6 +627,7 @@ Com base na potência instalada obtida após a divisão dos circuitos e conforme
 			Caso 3 & 9,60 & Monofásico & 6,0 & 40 \\
 			\bottomrule
 		\end{tabular}
+		}
 	}{
 		\Fonte{Elaborado pelo autor (2026).}
 	}
@@ -559,7 +640,8 @@ A Tabela \ref{tab:sintese_comparativa} apresenta uma visão consolidada dos prin
 	\centering
 	\Caption{\label{tab:sintese_comparativa} Comparativo geral dos estudos de caso}
 	\UFCtab{}{
-		\begin{tabular}{lccc}
+		\resizebox{\linewidth}{!}{
+			\begin{tabular}{lccc}
 			\toprule
 			Parâmetro & Caso 1 & Caso 2 & Caso 3 \\
 			\midrule \midrule
@@ -576,6 +658,7 @@ A Tabela \ref{tab:sintese_comparativa} apresenta uma visão consolidada dos prin
 			Disjuntor geral (A)               & 32 & 32 & 40 \\
 			\bottomrule
 		\end{tabular}
+		}
 	}{
 		\Fonte{Elaborado pelo autor (2026).}
 	}
@@ -599,7 +682,8 @@ Foram observadas divergências pontuais ao comparar com soluções de alguns dis
 	\centering
 	\Caption{\label{tab:validacao_sintese} Resultado da validação (síntese)}
 	\UFCtab{}{
-		\begin{tabular}{lp{3.5cm}p{3.5cm}p{4.5cm}}
+		\resizebox{\linewidth}{!}{
+			\begin{tabular}{lp{3.5cm}p{3.5cm}p{4.5cm}}
 			\toprule
 			Estudo de caso & Cargas mínimas por ambiente & Tipo de fornecimento & Observações \\
 			\midrule \midrule
@@ -610,6 +694,7 @@ Foram observadas divergências pontuais ao comparar com soluções de alguns dis
 			Caso 3 & Convergência total & Convergência total & Mesmo comportamento observado \\
 			\bottomrule
 		\end{tabular}
+		}
 	}{
 		\Fonte{Elaborado pelo autor (2026).}
 	}
