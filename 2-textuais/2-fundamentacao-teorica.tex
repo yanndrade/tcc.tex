@@ -7,7 +7,7 @@ elétricas residenciais de baixa tensão, com ênfase no papel do \textit{memori
 documento técnico de consolidação do raciocínio de projeto. Em seguida, são apresentados os
 fundamentos normativos empregados no levantamento de cargas mínimas, na divisão em circuitos
 terminais e nos critérios de dimensionamento de condutores e dispositivos de proteção, tomando
-como base a ABNT NBR 5410 \cite{NBR5410:2004} e as diretrizes da concessionária consideradas no
+como base a ABNT NBR 5410 \cite{NBR5410:2004, NBR5410:2008} e as diretrizes da concessionária consideradas no
 estudo \cite{ET124:ENEL}.
 
 Além da fundamentação normativa, este capítulo também introduz os conceitos computacionais
@@ -68,7 +68,7 @@ completo baseado em equipamentos efetivamente definidos, a ABNT NBR 5410 estabel
 critérios prescritivos mínimos que permitem estimar a carga instalada de forma
 padronizada e consistente \cite{NBR5410:2004}.
 
-De modo geral, a norma utiliza valores em VA para essas previsões mínimas, pois se trata
+De modo geral, a norma utiliza valores em Volt-Ampere (VA) para essas previsões mínimas, pois se trata
 de uma estimativa de potência aparente associada a pontos de utilização típicos.
 
 \subsection{Iluminação (regras por área)}
@@ -164,8 +164,28 @@ Embora a norma defina requisitos mínimos, é prática comum adotar limites de p
 \subsection{Circuitos de reserva}
 \label{subsec:ft_circuitos_reserva}
 
-A ABNT NBR 5410 estabelece que os quadros de distribuição devem prever capacidade de reserva (espaço físico) para ampliações futuras \cite{NBR5410:2004}.
-Na prática de projeto, isso se materializa prevendo circuitos reserva no quadro, dimensionados e deixados vagos para uso futuro. A quantidade de reservas depende do número de circuitos efetivos (ex.: para quadros com até 6 circuitos, prever no mínimo 2 reservas).
+A ABNT NBR 5410 estabelece que os quadros de distribuição devem prever capacidade de reserva (espaço físico) para ampliações futuras \cite{NBR5410:2004}. Na prática de projeto, isso se materializa prevendo espaços ou circuitos reserva no quadro, dimensionados e deixados vagos para uso futuro. O número mínimo de circuitos de reserva é definido em função da quantidade de circuitos efetivos da instalação, conforme apresentado na Tabela \ref{tab:circuitos_reserva}.
+
+\begin{table}[h!]
+	\centering
+	\Caption{\label{tab:circuitos_reserva} Espaço mínimo destinado à reserva em quadros de distribuição}
+	\UFCtab{}{
+		\begin{tabular}{cc}
+			\toprule
+			Quantidade de circuitos efetivos ($N$) & Espaço mínimo para reserva (nº de circuitos) \\
+			\midrule \midrule
+			$N \le 6$ & 2 \\
+			$7 \le N \le 12$ & 3 \\
+			$13 \le N \le 30$ & 4 \\
+			$N > 30$ & $0{,}15 \cdot N$ \\
+			\bottomrule
+		\end{tabular}
+	}{
+		\Fonte{Adaptado de ABNT \cite{NBR5410:2004}.}
+	}
+\end{table}
+
+\textbf{Nota:} Conforme prescrição normativa, a capacidade de reserva deve ser considerada no cálculo do alimentador do respectivo quadro de distribuição, assegurando que o sistema de entrada comporte ampliações previstas.
 
 \section{Dimensionamento de condutores e proteções (NBR 5410)}
 \label{sec:ft_dimensionamento_condutores}
@@ -175,7 +195,26 @@ Uma vez definidos os circuitos, procede-se ao dimensionamento dos condutores e �
 \subsection{Corrente de projeto, ampacidade e seção mínima}
 \label{subsec:ft_corrente_ampacidade}
 
-\paragraph{Corrente de projeto ($I_B$):} Calculada a partir da potência do circuito e da tensão ($I_B = S/V$).\paragraph{Ampacidade ($I_Z$):} A capacidade de condução de corrente do condutor depende do método de instalação, material, isolação e agrupamento. A seção deve ser tal que $I_Z \ge I_B$ (considerando fatores de correção).\paragraph{Seção mínima:} A norma impõe seções mínimas por razões mecânicas, independentemente da corrente calculada:
+\paragraph{Corrente de projeto ($I_B$):} Calculada a partir da potência do circuito e da tensão ($I_B = S/V$).
+
+\paragraph{Ampacidade ($I_Z$):}
+A capacidade de condução de corrente do condutor é obtida inicialmente a partir das tabelas de ampacidade da NBR 5410, que fornecem um valor tabelado de referência (chamado aqui de $I_{Z,tab}$) para um dado método de instalação, material e tipo de isolação, considerando também o número de condutores carregados no circuito. Entretanto, as tabelas são definidas para condições padronizadas; quando as condições reais diferem (por exemplo, temperatura ambiente maior ou agrupamento de circuitos), a ampacidade deve ser corrigida por fatores multiplicativos. Assim, adota-se:
+
+\begin{equation}
+    I_Z = I_{Z,tab} \cdot k_T \cdot k_G \cdot k_I \cdot \dots
+\end{equation}
+
+onde:
+\begin{itemize}
+    \item $k_T$ é o fator de correção por temperatura ambiente (reduz $I_Z$ quando a temperatura é superior à de referência da tabela);
+    \item $k_G$ é o fator de correção por agrupamento (reduz $I_Z$ quando há múltiplos circuitos/condutores próximos no mesmo eletroduto/canaleta, devido ao pior escoamento térmico);
+    \item $k_I$ é o fator de correção por condição de instalação com pior dissipação térmica, quando aplicável (ex.: trechos em isolamento térmico, situações específicas definidas pela norma);
+    \item ``$\dots$'' representa outros fatores normativos que só são aplicados quando o cenário exigir.
+\end{itemize}
+
+Na prática, o procedimento adotado é: (1) definir o método de instalação e as características do cabo (ex.: cobre/PVC e método B1), (2) obter $I_{Z,tab}$ na tabela correspondente, (3) aplicar os fatores pertinentes ao caso para obter $I_Z$, e então (4) selecionar a menor seção que satisfaça $I_Z \ge I_B$, mantendo a coordenação $I_B \le I_N \le I_Z$.
+
+\paragraph{Seção mínima:} A norma impõe seções mínimas por razões mecânicas, independentemente da corrente calculada:
 \begin{itemize}
   \item $1{,}5~\mathrm{mm}^2$ para iluminação;
   \item $2{,}5~\mathrm{mm}^2$ para circuitos de força (tomadas).
@@ -191,7 +230,7 @@ onde $I_B$ é a corrente de projeto, $I_N$ é a corrente nominal do disjuntor e 
 \subsection{Condutores de Proteção (PE) e Neutro}
 \label{subsec:ft_pe_neutro}
 
-\paragraph{PE (Terra):} Prover caminho de baixa impedância para faltas. Sua seção é definida normativamente com base na seção do condutor de fase (geralmente igual até $16~\mathrm{mm}^2$).\paragraph{Neutro:} Condutor de retorno. Em circuitos monofásicos, sua seção é, em regra, igual à do condutor de fase.
+\paragraph{PE (Terra):} Prover caminho de baixa impedância para faltas. Sua seção é definida normativamente com base na seção do condutor de fase.\paragraph{Neutro:} Condutor de retorno. Em circuitos monofásicos, sua seção é, em regra, igual à do condutor de fase.
 
 \subsection{Hipóteses adotadas no escopo (220 V, B1, PVC)}
 \label{subsec:ft_hipoteses}
@@ -220,64 +259,131 @@ A potência instalada é a soma das potências atribuídas a todas as cargas (il
 
 O tipo de fornecimento afeta:
 \begin{enumerate}
-    \item A arquitetura do quadro (monofásico vs. trifásico);
+    \item A arquitetura do quadro (monofásico em comparação ao trifásico);
     \item O padrão de entrada e medição;
     \item A necessidade de balanceamento de fases na distribuição dos circuitos, visando equilibrar as cargas entre as fases disponíveis.
 \end{enumerate}
 
-\section{IA: Modelos de Linguagem (LLM)}
+\section{Inteligência Artificial e Modelos de Linguagem (LLM)}
 \label{sec:ft_llm}
 
-\subsection{Conceito, capacidades e limitações}
+A Inteligência Artificial (IA) passou por uma transformação paradigmática nos últimos anos com o advento dos Modelos de Linguagem de Grande Escala (LLMs, ou \textit{Large Language Models}). Estes modelos representam o estado da arte em Processamento de Linguagem Natural (PLN), demonstrando capacidades surpreendentes de generalização, raciocínio lógico e geração de código.
 
-Modelos de Linguagem de Grande Escala (LLMs) são sistemas treinados para prever e gerar texto de forma coerente \cite{Vaswani2017}. Eles são capazes de interpretar linguagem natural, resumir informações e estruturar dados. Contudo, operam de forma probabilística.
+\subsection{Arquitetura Transformer e Mecanismo de Atenção}
+\label{subsec:ft_transformer}
 
-\subsection{Por que LLM sozinho não serve para cálculo normativo}
+A base tecnológica dos LLMs modernos é a arquitetura \textit{Transformer}, introduzida por \citeonline{Vaswani2017} no trabalho seminal ``\textit{Attention Is All You Need}''. Diferentemente das arquiteturas anteriores baseadas em Redes Neurais Recorrentes (RNNs) e LSTMs (\textit{Long Short-Term Memory}), que processavam dados sequencialmente, o Transformer permite o processamento paralelo de toda a sequência de entrada.
 
-O uso isolado de LLMs para engenharia apresenta riscos:
-\begin{itemize}
-    \item \textit{Alucinações:} Geração de informações incorretas com alta confiança \cite{Ji2023};
-    \item \textit{Inconsistência:} Falta de repetibilidade nos cálculos;
-    \item \textit{Dificuldade matemática:} Erros em operações aritméticas complexas.
-\end{itemize}
-Para projetos elétricos, onde a segurança depende de valores exatos e conformidade normativa, essas limitações inviabilizam o uso do LLM como única "calculadora".
+O componente central dessa arquitetura é o mecanismo de \textit{autoatenção} (\textit{self-attention}). Esse mecanismo permite que o modelo pondere a relevância de cada palavra (ou \textit{token}) em relação a todas as outras na mesma sequência, independentemente da distância entre elas. Matematicamente, a atenção pode ser descrita como uma função que mapeia uma consulta ($Q$), uma chave ($K$) e um valor ($V$) para uma saída:
 
-\section{Agentes e uso de ferramentas}
-\label{sec:ft_agentes}
+\begin{equation}
+    \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+\end{equation}
 
-\subsection{Conceito de agente}
+Onde $d_k$ é a dimensão da chave. Essa capacidade de capturar dependências de longo prazo e contextos complexos é o que permite aos LLMs compreenderem nuances da linguagem humana, referências cruzadas e instruções compostas.
 
-Um agente é um sistema que utiliza um LLM como cérebro para raciocinar, mas possui a capacidade de agir sobre o ambiente \cite{Yao2023}. Ele recebe um objetivo, planeja passos e executa ações.
+\subsection{Pré-treinamento e Ajuste Fino (Fine-Tuning)}
 
-\subsection{Ferramentas determinísticas para cálculos normativos}
-
-Para mitigar as limitações dos LLMs, o agente utiliza ferramentas determinísticas (código convencional) para executar cálculos.
-\begin{quote}
-\textit{LLM (Interpretação/Texto)} + \textit{Ferramenta (Cálculo/Norma)} = \textit{Projeto Confiável}.
-\end{quote}
-Isso garante que, para uma dada entrada, o dimensionamento (seções, disjuntores) siga rigorosamente a NBR 5410.
-
-\subsection{Validação e coerência}
-
-O sistema valida se os resultados das ferramentas fazem sentido técnico (ex.: disjuntor não pode ser maior que a ampacidade do cabo) e se estão coerentes com a descrição do usuário, garantindo um projeto seguro e auditável.
-
-\section{Recuperação Aumentada por Busca (RAG) aplicada a normas}
-\label{sec:ft_rag}
-
-\subsection{Justificativa para uso de RAG em normas}
-
-Normas técnicas são extensas e detalhadas. O uso de RAG permite que o agente consulte trechos específicos da norma durante o processo, fundamentando suas decisões em texto real em vez de confiar apenas na memória de treinamento do modelo.
-
-\subsection{Pipeline conceitual: indexação, recuperação e síntese}
+O ciclo de vida de um LLM envolve tipicamente duas etapas principais:
 
 \begin{enumerate}
-    \item \textit{Indexação:} Fragmentação das normas em trechos consultáveis;
-    \item \textit{Recuperação:} Busca híbrida (semântica + palavras-chave) por trechos relevantes ao contexto atual;
-    \item \textit{Síntese:} O agente usa a informação recuperada para tomar decisões ou explicar o memorial.
+    \item \textbf{Pré-treinamento:} O modelo é treinado em um \textit{corpus} massivo de texto (trilhões de palavras provenientes da web, livros, artigos e código-fonte) com o objetivo de prever o próximo \textit{token} em uma sequência. Nesta fase, o modelo adquire conhecimento geral sobre o mundo, gramática, lógica e até mesmo fundamentos de programação.
+    \item \textbf{Ajuste Fino (\textit{Fine-Tuning}):} O modelo pré-treinado é refinado em conjuntos de dados menores e mais específicos, muitas vezes utilizando técnicas como RLHF (\textit{Reinforcement Learning from Human Feedback}) para alinhar o comportamento do modelo às instruções humanas, tornando-o mais útil, seguro e assertivo para tarefas de assistência \cite{Nguyen2025}.
 \end{enumerate}
+
+\subsection{Limitações: Alucinações e Janela de Contexto}
+
+Apesar de seu poder, os LLMs possuem limitações críticas para aplicações de engenharia:
+
+\begin{itemize}
+    \item \textbf{Alucinações:} Como modelos probabilísticos, os LLMs podem gerar informações factualmente incorretas, mas com alta confiança e fluidez \cite{Ji2023}. Em um projeto elétrico, inventar uma norma ou um valor de corrente é inaceitável.
+    \item \textbf{Janela de Contexto Limitada:} Embora tenha crescido, a quantidade de informação que um modelo pode processar de uma vez (sua "memória de curto prazo") é finita. Não é possível, por exemplo, inserir o texto integral de todas as normas técnicas brasileiras no \textit{prompt} de uma única vez.
+    \item \textbf{Dificuldade com Aritmética:} LLMs são excelentes em lógica linguística, mas frequentemente falham em cálculos matemáticos precisos, a exemplo de somas complexas ou operações com ponto flutuante, pois tentam prever o resultado token por token em vez de calcular.
+\end{itemize}
+
+\textbf{Aplicação neste trabalho:} Reconhecendo essas limitações, a metodologia proposta utiliza o LLM estritamente como um orquestrador semântico. O modelo é responsável por interpretar os requisitos do usuário (como a solicitação de um chuveiro de 5500W) e estruturar o raciocínio, mas os cálculos de engenharia e as verificações normativas são delegados a ferramentas externas determinísticas, garantindo que a "alucinação" não afete a segurança do projeto elétrico.
+
+\section{Recuperação Aumentada por Busca (RAG)}
+\label{sec:ft_rag}
+
+Para mitigar o problema das alucinações e a limitação de conhecimento atualizado, a técnica de \textit{Retrieval-Augmented Generation} (RAG) tem se consolidado como padrão na indústria \cite{Lewis2020}.
+
+\subsection{Conceito e Comparação com Fine-Tuning}
+
+O RAG é uma arquitetura que combina um modelo gerador (o LLM) com um módulo recuperador (\textit{Retriever}), conforme ilustrado na Figura \ref{fig:rag}. Em vez de confiar apenas nos parâmetros internos do modelo (sua "memória paramétrica"), o sistema busca informações relevantes em uma base de conhecimento externa confiável antes de gerar a resposta.
+
+\begin{figure}[h!]
+	\centering
+	\Caption{\label{fig:rag} Arquitetura básica de um sistema RAG}
+	\UFCfig{}{
+		\includegraphics[width=0.8\textwidth]{figuras/rag.png}
+	}{
+		\Fonte{Elaborado pelo autor.}
+	}
+\end{figure}
+
+É fundamental distinguir o RAG do \textit{Fine-Tuning}. Enquanto o \textit{Fine-Tuning} é utilizado para adaptar o estilo, o comportamento ou a forma como o modelo responde (sendo ideal para tarefas repetitivas ou de domínio muito específico), o RAG é preferível quando o conhecimento necessário é vasto, frequentemente atualizado e requer citação explícita da fonte. No contexto de normas técnicas, onde a auditabilidade e a precisão do texto original são cruciais, o RAG é a abordagem mais adequada.
+
+\subsection{Implementação Prática: Indexação, Recuperação e Geração}
+
+A aplicação de um sistema RAG eficaz envolve etapas técnicas bem definidas:
+
+\begin{itemize}
+    \item \textbf{Indexação e \textit{Chunking}:} Documentos longos, como normas em PDF, são pré-processados e divididos em fragmentos menores (\textit{chunks}), respeitando a estrutura lógica do documento (por exemplo, por seções ou artigos da norma). Metadados como número do item e página são preservados para rastreabilidade.
+    \item \textbf{Embeddings e Busca Vetorial:} Cada fragmento de texto é convertido em um vetor numérico (\textit{embedding}) de alta dimensão que representa seu significado semântico. A recuperação utiliza algoritmos de busca de similaridade (como similaridade de cosseno) para encontrar os $k$ trechos (\textit{top-k}) mais relevantes para a consulta do usuário, mesmo que as palavras exatas não coincidam.
+    \item \textbf{Montagem de Contexto (\textit{Context Assembly}):} Os trechos recuperados são injetados no \textit{prompt} do sistema. O modelo recebe uma instrução explícita para usar apenas o contexto fornecido abaixo para responder.
+    \item \textbf{\textit{Grounding} e Rastreabilidade:} Para garantir a veracidade, o modelo é instruído a citar a fonte da informação utilizada (por exemplo, ``conforme item 6.2 da NBR 5410 recuperado''), permitindo que o engenheiro humano verifique a base da decisão.
+\end{itemize}
+
+\textbf{Aplicação neste trabalho:} A base de conhecimento do sistema proposto é composta pelos textos da NBR 5410 e da ET-124. Através do RAG, o agente recupera os critérios exatos (como fatores de agrupamento e seções mínimas) no momento da decisão, assegurando que o memorial de cálculo esteja ancorado na norma vigente e não em conhecimento genérico ou alucinado.
+
+\section{Agentes Inteligentes e Sistemas Autônomos}
+\label{sec:ft_agentes}
+
+Enquanto um sistema RAG é passivo, pois responde a uma pergunta, um \textbf{Agente} é um sistema autônomo capaz de perseguir objetivos complexos. \citeonline{Yao2023} definem agentes baseados em LLM como sistemas onde o modelo de linguagem atua como o "cérebro", responsável pelo planejamento e raciocínio, enquanto interfaces externas fornecem a capacidade de ação.
+
+\subsection{O Padrão ReAct (Reasoning + Acting)}
+
+Uma das abordagens mais eficazes para a construção de agentes é o padrão \textit{ReAct} (Synergizing Reasoning and Acting in Language Models). Onde modelos tradicionais apenas geram texto, um agente ReAct opera em um loop contínuo, ilustrado na Figura \ref{fig:react}, composto por:
+
+\begin{figure}[h!]
+	\centering
+	\Caption{\label{fig:react} Ciclo de raciocínio e ação no padrão ReAct}
+	\UFCfig{}{
+		\includegraphics[width=0.6\textwidth]{figuras/react.jpg}
+	}{
+		\Fonte{Adaptado de \citeonline{Yao2023}.}
+	}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Pensamento (\textit{Thought}):} O agente analisa o estado atual e decide o que precisa ser feito (como a necessidade de calcular a corrente do circuito do chuveiro).
+    \item \textbf{Ação (\textit{Action}):} O agente escolhe uma ferramenta para executar uma tarefa específica (por exemplo, chamar a função \texttt{calcular\_corrente(potencia=5500, tensao=220)}).
+    \item \textbf{Observação (\textit{Observation}):} O agente recebe o resultado da ferramenta e o incorpora ao seu raciocínio para dar o próximo passo.
+\end{itemize}
+
+\subsection{Confiabilidade e Controle: Ferramentas Determinísticas}
+
+Para aplicações de engenharia, a autonomia do agente deve ser balizada por rigor técnico. Isso é alcançado através do uso de ferramentas (Figura \ref{fig:tools}):
+
+\begin{figure}[h!]
+	\centering
+	\Caption{\label{fig:tools} Interação entre o LLM e ferramentas externas}
+	\UFCfig{}{
+		\includegraphics[width=0.6\textwidth]{figuras/tools.jpg}
+	}{
+		\Fonte{Elaborado pelo autor.}
+	}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Ferramentas Determinísticas:} As funções que o agente chama (cálculo de queda de tensão, seleção de disjuntor) são algoritmos de software clássico, testáveis e imunes a alucinações.
+    \item \textbf{Critérios de Parada e Validação:} O agente opera sob restrições lógicas. Por exemplo, uma ferramenta de seleção de cabos verifica internamente a condição $I_B \le I_N \le I_Z$ e retorna erro caso não satisfeita, forçando o agente a revisar seu plano antes de prosseguir.
+\end{itemize}
+
+\textbf{Aplicação neste trabalho:} O agente desenvolvido executa um loop ReAct onde cada etapa do projeto elétrico (levantamento de carga, divisão de circuitos, dimensionamento) é uma ação que invoca uma função de engenharia específica. O memorial de cálculo final não é uma criação livre do LLM, mas sim o registro estruturado das saídas validadas dessas ferramentas determinísticas, orquestradas pela inteligência do modelo.
 
 \section{Síntese do capítulo}
 \label{sec:ft_sintese}
 
-Este capítulo estabeleceu a base para o desenvolvimento do sistema proposto. A amarração entre as normas técnicas (NBR 5410 e ET-124), que fornecem os critérios de engenharia, e a arquitetura computacional (Agentes, LLM e RAG), que provê a inteligência e flexibilidade, é o cerne da metodologia.
-A estratégia de separar o determinismo (cálculo) da fluidez (texto) é fundamental para garantir que o memorial de cálculo gerado seja, ao mesmo tempo, tecnicamente rigoroso e acessível ao usuário.
+Este capítulo fundamentou os dois pilares do trabalho. De um lado, a engenharia elétrica, com as prescrições rígidas da ABNT NBR 5410 e da ET-124, que definem \textit{o que} deve ser feito. Do outro, a Inteligência Artificial moderna, através de LLMs, RAG e Agentes ReAct, que definem \textit{como} automatizar esse processo de forma inteligente. A estratégia de separar o determinismo (cálculo) da fluidez (texto) é fundamental para garantir que o memorial de cálculo gerado seja, ao mesmo tempo, tecnicamente rigoroso e acessível ao usuário.
